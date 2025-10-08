@@ -5,7 +5,7 @@ export default function Footer({ onOpenContact }){
     <footer>
       <div className="container-fluid">
         <div className="footer-box">
-          <img src="/html/assets/media/vectors/footer-shape.png" alt="" />
+          <img src="/assets/media/vectors/footer-shape.png" alt="" />
           <div className="content-area">
             <div className="menu-detail">
               <h2 className="h-120 fw-900 white"><a href="#" className="contact-btn" onClick={(e)=>{e.preventDefault(); onOpenContact && onOpenContact()}}>LET'S <br/> TALK</a></h2>

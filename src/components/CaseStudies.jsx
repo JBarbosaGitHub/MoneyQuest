@@ -29,52 +29,52 @@ export default function CaseStudies(){
           </div>
           <div className="col-xl-6 col-lg-6">
             <div className={`brand-detail detail-1 ${active==='detail-1'? 'active':''}`}>
-              <img src="/html/assets/media/vectors/shape-2.png" alt="" className="bg-shape" />
+              <img src="/assets/media/vectors/shape-2.png" alt="" className="bg-shape" />
               <div className="detail-content">
                 <div className="image-block mb-40">
-                  <img src="/html/assets/media/brand-logo/brand-img-1.png" alt="" className="detailContent_image" />
+                  <img src="/assets/media/brand-logo/brand-img-1.png" alt="" className="detailContent_image" />
                 </div>
                 <div className="text-block">
-                  <img src="/html/assets/media/brand-logo/brand-logo-1.png" alt="" className="detail-logo" />
+                  <img src="/assets/media/brand-logo/brand-logo-1.png" alt="" className="detail-logo" />
                   <div className="vr-line"></div>
                   <p className="h-16 fw-400 black">Lorem ipsum dolor sit amet consectetur.</p>
                 </div>
               </div>
             </div>
             <div className={`brand-detail detail-2 ${active==='detail-2'? 'active':''}`} style={{display: active==='detail-2' ? 'block' : 'none'}}>
-              <img src="/html/assets/media/vectors/shape-2.png" alt="" className="bg-shape" />
+              <img src="/assets/media/vectors/shape-2.png" alt="" className="bg-shape" />
               <div className="detail-content">
                 <div className="image-block mb-40">
-                  <img src="/html/assets/media/brand-logo/brand-img-2.png" alt="" className="detailContent_image" />
+                  <img src="/assets/media/brand-logo/brand-img-2.png" alt="" className="detailContent_image" />
                 </div>
                 <div className="text-block">
-                  <img src="/html/assets/media/brand-logo/brand-logo-2.png" alt="" className="detail-logo" />
+                  <img src="/assets/media/brand-logo/brand-logo-2.png" alt="" className="detail-logo" />
                   <div className="vr-line"></div>
                   <p className="h-16 fw-400 black">Alternate brand description for brand 2.</p>
                 </div>
               </div>
             </div>
             <div className={`brand-detail detail-3 ${active==='detail-3'? 'active':''}`} style={{display: active==='detail-3' ? 'block' : 'none'}}>
-              <img src="/html/assets/media/vectors/shape-2.png" alt="" className="bg-shape" />
+              <img src="/assets/media/vectors/shape-2.png" alt="" className="bg-shape" />
               <div className="detail-content">
                 <div className="image-block mb-40">
-                  <img src="/html/assets/media/brand-logo/brand-img-3.png" alt="" className="detailContent_image" />
+                  <img src="/assets/media/brand-logo/brand-img-3.png" alt="" className="detailContent_image" />
                 </div>
                 <div className="text-block">
-                  <img src="/html/assets/media/brand-logo/brand-logo-3.png" alt="" className="detail-logo" />
+                  <img src="/assets/media/brand-logo/brand-logo-3.png" alt="" className="detail-logo" />
                   <div className="vr-line"></div>
                   <p className="h-16 fw-400 black">Alternate brand description for brand 3.</p>
                 </div>
               </div>
             </div>
             <div className={`brand-detail detail-4 ${active==='detail-4'? 'active':''}`} style={{display: active==='detail-4' ? 'block' : 'none'}}>
-              <img src="/html/assets/media/vectors/shape-2.png" alt="" className="bg-shape" />
+              <img src="/assets/media/vectors/shape-2.png" alt="" className="bg-shape" />
               <div className="detail-content">
                 <div className="image-block mb-40">
-                  <img src="/html/assets/media/brand-logo/brand-img-4.png" alt="" className="detailContent_image" />
+                  <img src="/assets/media/brand-logo/brand-img-4.png" alt="" className="detailContent_image" />
                 </div>
                 <div className="text-block">
-                  <img src="/html/assets/media/brand-logo/brand-logo-4.png" alt="" className="detail-logo" />
+                  <img src="/assets/media/brand-logo/brand-logo-4.png" alt="" className="detail-logo" />
                   <div className="vr-line"></div>
                   <p className="h-16 fw-400 black">Alternate brand description for brand 4.</p>
                 </div>

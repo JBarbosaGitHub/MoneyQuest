@@ -28,9 +28,9 @@ export default function Services({ onOpenContact }){
                   <div className="content">
                     <h4 className="h-38 black mb-12">PERSONAL <br/> FINANCE</h4>
                     <p className="h-16 body-text fw-500 mb-40 black">Lorem ipsum dolor sit amet consectetur.</p>
-                    <img src="/html/assets/media/images/card-1.png" alt="" className="card-image" />
+                    <img src="/assets/media/images/card-1.png" alt="" className="card-image" />
                   </div>
-                  <img src="/html/assets/media/vectors/shape-1.png" alt="" className="shape-image" />
+                  <img src="/assets/media/vectors/shape-1.png" alt="" className="shape-image" />
                   <h3 data-text="GET STARTED">GET STARTED</h3>
                 </div>
               </div>
@@ -41,9 +41,9 @@ export default function Services({ onOpenContact }){
                   <div className="content">
                     <h4 className="h-38 black mb-12">PAYROLL <br/> MANAGEMENT</h4>
                     <p className="h-16 body-text fw-500 mb-40 black">Lorem ipsum dolor sit amet consectetur.</p>
-                    <img src="/html/assets/media/images/card-2.png" alt="" className="card-image" />
+                    <img src="/assets/media/images/card-2.png" alt="" className="card-image" />
                   </div>
-                  <img src="/html/assets/media/vectors/shape-1.png" alt="" className="shape-image" />
+                  <img src="/assets/media/vectors/shape-1.png" alt="" className="shape-image" />
                   <h3 data-text="GET STARTED">GET STARTED</h3>
                 </div>
               </div>
@@ -54,9 +54,9 @@ export default function Services({ onOpenContact }){
                   <div className="content">
                     <h4 className="h-38 black mb-12">PAYROLL <br/> MANAGEMENT</h4>
                     <p className="h-16 body-text fw-500 mb-40 black">Lorem ipsum dolor sit amet consectetur.</p>
-                    <img src="/html/assets/media/images/card-2.png" alt="" className="card-image" />
+                    <img src="/assets/media/images/card-2.png" alt="" className="card-image" />
                   </div>
-                  <img src="/html/assets/media/vectors/shape-1.png" alt="" className="shape-image" />
+                  <img src="/assets/media/vectors/shape-1.png" alt="" className="shape-image" />
                   <h3 data-text="GET STARTED">GET STARTED</h3>
                 </div>
               </div>

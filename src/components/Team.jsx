@@ -22,9 +22,9 @@ export default function Team(){
         >
           <SwiperSlide>
             <div className="team-block">
-              <img src="/html/assets/media/vectors/shape-3.png" className="team-shape" alt="" />
+              <img src="/assets/media/vectors/shape-3.png" className="team-shape" alt="" />
               <div className="member-detail">
-                <img src="/html/assets/media/users/user-1.png" alt="" className="mb-32" />
+                <img src="/assets/media/users/user-1.png" alt="" className="mb-32" />
                 <div className="title">
                   <h4 className="h-38 fw-700 black">JACOB ANDREW</h4>
                   <h5 className="h-21 fw-700 font-sec black">Founder & Accountant</h5>
@@ -35,9 +35,9 @@ export default function Team(){
           </SwiperSlide>
           <SwiperSlide>
             <div className="team-block">
-              <img src="/html/assets/media/vectors/shape-3.png" className="team-shape" alt="" />
+              <img src="/assets/media/vectors/shape-3.png" className="team-shape" alt="" />
               <div className="member-detail">
-                <img src="/html/assets/media/users/user-1.png" alt="" className="mb-32" />
+                <img src="/assets/media/users/user-1.png" alt="" className="mb-32" />
                 <div className="title">
                   <h4 className="h-38 fw-700 black">JACOB ANDREW</h4>
                   <h5 className="h-21 fw-700 font-sec black">Founder & Accountant</h5>
@@ -48,9 +48,9 @@ export default function Team(){
           </SwiperSlide>
           <SwiperSlide>
             <div className="team-block">
-              <img src="/html/assets/media/vectors/shape-3.png" className="team-shape" alt="" />
+              <img src="/assets/media/vectors/shape-3.png" className="team-shape" alt="" />
               <div className="member-detail">
-                <img src="/html/assets/media/users/user-1.png" alt="" className="mb-32" />
+                <img src="/assets/media/users/user-1.png" alt="" className="mb-32" />
                 <div className="title">
                   <h4 className="h-38 fw-700 black">JACOB ANDREW</h4>
                   <h5 className="h-21 fw-700 font-sec black">Founder & Accountant</h5>

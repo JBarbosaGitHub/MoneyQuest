@@ -7,7 +7,7 @@ export default function Header({ onOpenContact }){
     <header className={`header ${open ? 'menu-active' : ''}`}>
       <div className="logo">
         <a href="#">
-          <img src="/html/assets/media/logo.png" className="brand-logo" alt="" />
+          <img src="/assets/media/logo.png" className="brand-logo" alt="" />
         </a>
       </div>
       <div className="menu-detail">
