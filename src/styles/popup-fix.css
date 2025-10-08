@@ -1,0 +1,4 @@
+body.popup-open { overflow: hidden; }
+/* Ensure begin-popup is visible (in case vendor css uses right:-100%) */
+.begin-popup { right: 0 !important; }
+.begin-popup .overlay { transform: scale(1) !important; opacity: 0.5 !important; }

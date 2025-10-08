@@ -1,0 +1,273 @@
+.case-studies {
+    padding: 5vw 0;
+
+    .banner-text {
+        position: relative;
+        background: transparent;
+        z-index: 0;
+        font-family: $font-primary;
+        font-size: 4.6875vw;
+        font-weight: 800;
+        font-style: normal;
+        line-height: 125%;
+        @include media-query(430px){
+            font-size: 6.6875vw;
+        }
+        &:before {
+            content: attr(title);
+            position: absolute;
+            -webkit-text-stroke: 1px $black;
+            -webkit-text-fill-color: $white;
+            left: 0;
+            top: 20px;
+            z-index: -1;
+            @include media-query(1299px){
+                top: 16px;
+            }
+            @include media-query(820px){
+                top: 11px;
+            }
+            @include media-query(768px){
+                top: 8px;
+            }
+        }
+    }
+
+    .brand-area {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        border: 1px solid $black;
+        border-radius: 30px;
+        padding: 24px;
+        background: $white;
+
+        @include media-query(1499px) {
+            border-radius: 16px;
+            padding: 18px;
+        }
+        @include media-query(820px) {
+            margin-bottom: 32px;
+        }
+        @include media-query(399px) {
+            margin-bottom: 16px;
+        }
+        
+        .square {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(8px, 3.542vw, 208px) 0;
+            border: 1px solid $black;
+            transition: $transition;
+            background: transparent;
+
+            @include media-query(1499px) {
+                padding: 40px 0;
+            }
+            @include media-query(1299px) {
+                padding: 26px 0;
+            }
+            @include media-query(1024px) {
+                padding: 8px 0;
+            }
+            @include media-query(430px) {
+                padding: 0;
+            }
+
+            svg {
+                @include media-query(1499px) {
+                    width: 100px;
+                }
+                @include media-query(1024px) {
+                    width: 80px;
+                }
+                @include media-query(430px) {
+                    width: 69px;
+                }
+                path {
+                    transition: $transition;
+                }
+
+                .hover-color {
+                    transition: $transition;
+                }
+            }
+
+            &:nth-child(1) {
+                border-top: 0;
+                border-left: 0;
+            }
+
+            &:nth-child(2) {
+                border-top: 0;
+                border-left: 0;
+            }
+
+            &:nth-child(3) {
+                border-top: 0;
+                border-left: 0;
+                border-right: 0;
+            }
+
+            &:nth-child(4) {
+                border-top: 0;
+                border-left: 0;
+            }
+
+            &:nth-child(5) {
+                border-top: 0;
+                border-left: 0;
+            }
+
+            &:nth-child(6) {
+                border-top: 0;
+                border-left: 0;
+                border-right: 0;
+            }
+
+            &:nth-child(7) {
+                border-top: 0;
+                border-left: 0;
+                border-bottom: 0;
+            }
+
+            &:nth-child(8) {
+                border-top: 0;
+                border-left: 0;
+                border-bottom: 0;
+            }
+
+            &:nth-child(9) {
+                border: 0;
+
+            }
+
+            &:hover {
+                cursor: pointer;
+                background: $accent-1;
+                transition: $transition;
+
+                svg {
+                    path {
+                        fill: $white;
+                        transition: $transition;
+                    }
+
+                    .hover-color {
+                        fill: $white;
+                        transition: $transition;
+                    }
+                }
+            }
+
+            &.active {
+                background: $accent-1;
+
+                svg {
+                    path {
+                        fill: $white;
+                        transition: $transition;
+                    }
+
+                    .hover-color {
+                        fill: $white;
+                        transition: $transition;
+                    }
+                }
+            }
+        }
+
+    }
+
+    .brand-detail {
+        position: relative;
+        display: none;
+
+        .bg-shape {
+            width: 100%;
+            position: relative;
+            @include media-query(820px) {
+                height: 620px;
+                width: 100%;
+            }
+            @include media-query(575px) {
+                height: 550px;
+            }
+            @include media-query(492px) {
+                height: 460px;
+            }
+            @include media-query(430px) {
+                height: 420px;
+            }
+        }
+
+        .detail-content {
+            position: absolute;
+            top: 24px;
+            left: 26px;
+
+            @include media-query(1399px) {
+                left: 16px;
+                right: 16px;
+            }
+            @include media-query(992px) {
+                top: 14px;
+            }
+            .image-block {
+                img {
+                    width: 100%;
+                }
+            }
+        }
+
+        &.active {
+            display: block;
+        }
+    }
+
+    .text-block {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        @include media-query(399px) {
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .detail-logo {
+            @include media-query(1399px) {
+                width: 90px;
+            }
+            @include media-query(992px) {
+                width: 65px;
+            }
+            @include media-query(820px) {
+                width: 90px;
+            }
+        }
+        p{
+            @include media-query(575px) {
+                font-size: 2.5vw;
+            }
+        }
+    }
+    
+    .vr-line {
+        background: $black;
+        height: 8.4375vw;
+        width: 1px;
+        @include media-query(1399px) {
+            height: 6.4375vw;
+        }
+        @include media-query(575px) {
+            height: 17.4375vw;
+        }
+        @include media-query(399px) {
+            display: none;
+        }
+    }
+
+}

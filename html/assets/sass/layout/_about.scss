@@ -1,0 +1,142 @@
+.about-sec {
+    width: 100vw;
+    position: relative;
+    z-index: 100;
+    top: 0;
+    transition: 1s ease-in left;
+    padding-top: 9.166666666666666vw;
+    @include media-query(1024px){
+        padding-top: clamp(24px, 4.688vw, 64px);
+    }
+    @include media-query(820px){
+        padding-top: 5.166667vw;
+    }
+    @include media-query(768px){
+        padding-top: 0;
+    }
+    // Accordions
+    .accordion_block{
+        height: 33.854166666666664vw;
+        @include media-query(1399px){
+            height: 40.854167vw;
+        }
+        @include media-query(1024px){
+            height: 42.854167vw;
+        }
+        @include media-query(820px){
+            height: 58.854167vw;
+        }
+        @include media-query(575px){
+            height: 67.854167vw;
+        }
+        @include media-query(499px){
+            height: 75.854167vw;
+        }
+        .accordion {
+            padding: 24px;
+            padding-right: 26px;
+            background: transparent;
+            backdrop-filter: blur(50px);
+            border: 1px solid $light-gray;
+            border-radius: 20px;
+            margin-bottom: 24px;
+            @include media-query(430px){
+                padding: 16px;
+                padding-right: 20px;
+                border-radius: 10px;
+            }
+            @include media-query(492px){
+                margin-bottom: 8px;
+            }
+            &_intro {
+                cursor: pointer;
+                &::after {
+                    content: "\f067";
+                    font-family: $font-awesome;
+                    background-image: none !important;
+                    position: absolute;
+                    top: clamp(8px, 1.771vw, 48px);
+                    right: clamp(8px, 1.563vw, 30px);
+                    font-size: clamp(16px, 1.667vw, 60px);
+                    font-weight: 200;
+                    line-height: 120%;
+                    border: 1px solid $black;
+                    border-radius: 10px;
+                    color: $black;
+                    cursor: pointer;
+                    padding: 0 16px;
+                    box-shadow: 0px 6px 0px 0px #000;
+                    @include media-query(1024px){
+                        top: 16px;
+                        right: 16px;
+                        border-radius: 8px;
+                        padding: 0 10px;
+                        font-size: 21px;
+                    }
+                    @include media-query(430px){
+                        top: 8px;
+                        right: 8px;
+                        border-radius: 8px;
+                        padding: 0 10px;
+                        font-size: 16px;
+                        box-shadow: 0px 3px 0px 0px #000;
+                    }
+                }
+            }
+    
+            &_content {
+                max-height: 0;
+                overflow: hidden;
+                will-change: max-height;
+                transition: all 0.25s ease-out;
+                opacity: 0;
+    
+                p{
+                    @media (max-width: 430px) {
+                        overflow: hidden;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 4; 
+                                line-clamp: 4; 
+                        -webkit-box-orient: vertical;
+                    }
+                }
+            }
+    
+    
+            h4 {
+                margin: 0;
+                position: relative;
+                padding: 0;
+                font-weight: 500;
+                font-family: $font-primary;
+                font-size: 2.65625vw;
+                font-weight: 700;
+                font-style: normal;
+                line-height: 120%;
+                letter-spacing: -0.0265625vw;
+            }
+    
+    
+    
+            &_active {
+                .accordion_intro {
+                    &::after {
+                        background-image: none !important;
+                        color: $black;
+                        content: "\f068";
+                        font-family: $font-awesome;
+                    }
+                }
+    
+                .accordion_content {
+                    opacity: 1;
+                }
+    
+                
+            }
+        }
+    }
+    .about-main-image {
+        width: 100%;
+    }
+}

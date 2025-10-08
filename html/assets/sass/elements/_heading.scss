@@ -1,0 +1,25 @@
+.sec-heading{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .content{
+    h2{
+      color: $black;
+      span{
+        position: relative;
+        color: $accent-1;
+        &::before{
+          content: '';
+          background: url(../media/vector/bottom-line.png);
+          background-repeat: no-repeat;
+          background-size: contain;
+          position: absolute;
+          width: 100%;
+          height: 7px;
+          left: 0;
+          bottom: -10px;
+        }
+      }
+    }
+  }
+}

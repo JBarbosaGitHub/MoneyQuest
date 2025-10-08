@@ -1,0 +1,148 @@
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  
+}
+
+ul.list-style,
+ol.list-style {
+  padding: 0;
+}
+
+ul.list-style li::marker,
+ol.list-style li::marker {
+  color: $accent-1;
+}
+
+.unstyled {
+  padding-left: 0;
+  list-style: none;
+  margin-bottom: 0;
+}
+
+
+.container,
+.container-fluid{
+  padding: 0 3.3333333333333335vw;
+  width: 100%;
+}
+
+
+.row.g-0 {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.row.g-0>[class*="col"] {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.page-content{
+  margin: 20px 0;
+}
+
+
+
+
+/*-------------------------
+    Typography
+-------------------------*/
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-primary;
+  color: $black;
+  background: $white;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 140%;
+  height: 100%;
+  background-image: url('../media/backgrounds/dots.png');
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+address,
+p,
+pre,
+blockquote,
+table,
+hr {
+  margin: 0;
+  opacity: 1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  a {
+    color: inherit;
+  }
+}
+
+p {
+  font-family: $font-primary;
+  font-size: 0.8333333333333334vw;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: 0.016666666666666666vw;
+  
+  &.sec{
+    font-family: $font-primary;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.28px;
+  }
+  &.bold{
+    font-weight: 600;
+  }
+  @media(max-width: 992px) {
+    font-size: 1.5120967741935485vw;
+  }
+  @media(max-width: 768px) {
+    font-size: 1.6927083333333333vw;
+  }
+  @media(max-width: 490px) {
+    font-size: 3vw;
+  }
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  transition: $transition;
+  color: unset;
+  &:hover {
+    color: $accent-1;
+  }
+}
+
+#mobile-svg-draw{
+  position: absolute;
+  left: -5px;
+  top: 220.6976vw;
+  z-index: 2;
+  overflow: visible;
+  width: 96.960vw;
+  height: 559.53vw;
+  display: none;
+  @media(max-width: 490px) {
+    display: block;
+  }
+  path{
+      transform: $transition;
+  }
+}

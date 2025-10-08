@@ -1,0 +1,46 @@
+import React, { useState } from 'react'
+
+export default function Header({ onOpenContact }){
+  const [open, setOpen] = useState(false)
+
+  return (
+    <header className={`header ${open ? 'menu-active' : ''}`}>
+      <div className="logo">
+        <a href="#">
+          <img src="/html/assets/media/logo.png" className="brand-logo" alt="" />
+        </a>
+      </div>
+      <div className="menu-detail">
+        <div className="menu-link">
+          <button
+            className={`hamburger ${open ? 'show hamburger-close' : ''}`}
+            aria-label="Toggle menu"
+            onClick={() => setOpen(v => !v)}
+          >
+            <span className="line-menu half start"></span>
+            <span className="line-menu"></span>
+            <span className="line-menu half end"></span>
+          </button>
+          <button className="cus-btn primary contact-btn" onClick={()=>onOpenContact && onOpenContact()}>CONTACT US</button>
+        </div>
+        <div className={`toggle-menu ${open ? 'show' : ''}`}>
+          <div className="site-header__bg" onClick={() => setOpen(false)}></div>
+          <div className="toggle-link">
+            <ul className="links list-unstyled">
+              <li><a href="#about" onClick={() => setOpen(false)}>About</a></li>
+              <li><a href="#service" onClick={() => setOpen(false)}>Services</a></li>
+              <li><a href="#case-studies" onClick={() => setOpen(false)}>Case Studies</a></li>
+              <li><a href="#testimonials" onClick={() => setOpen(false)}>Testimonials</a></li>
+              <li><a href="#team" onClick={() => setOpen(false)}>Team</a></li>
+            </ul>
+            <ul className="social-link list-unstyled">
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">Linkedin</a></li>
+              <li><a href="#">Indeed</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+  )
+}

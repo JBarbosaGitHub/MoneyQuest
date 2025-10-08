@@ -1,0 +1,273 @@
+footer {
+    padding: 5vw 0 2.5vw;
+
+    .footer-box {
+        position: relative;
+        img{
+            width: 100%;
+            @media (min-width: 2560px){
+                height: clamp(760px, 35.703vw, 1190px);
+            }
+            @include media-query(575px){
+                height: 330px;
+            }
+            @include media-query(430px){
+                height: auto;
+            }
+        }
+        .content-area {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            .menu-detail {
+                display: flex;
+                gap: 10.3125vw;
+                margin-bottom: 4.947916666666667vw;
+                padding: 24px 32px;
+                @include media-query(1599px){
+                    margin-bottom: 2.947917vw;
+                }
+                @include media-query(1399px){
+                    margin-bottom: 0;
+                }
+                @include media-query(1199px){
+                    gap: 9.3125vw;
+                }
+                @include media-query(992px){
+                    padding: 16px 32px;
+                }
+                @include media-query(820px){
+                    padding: 16px;
+                    gap: 50px;
+                }
+                @include media-query(575px){
+                    gap: 28px;
+                    padding: 24px 18px;
+                }
+
+                h2 {
+                    position: relative;
+                    @include media-query(1199px){
+                        top: 24px;
+                    }
+                    @include media-query(820px){
+                        top: 6px;
+                    }
+                    @include media-query(430px){
+                        top: 6px;
+                        left: 50%;
+                        right: 50%;
+                        transform: translate(-50%, -50%);
+                    }
+                    br{
+                        @include media-query(430px){
+                            display: none;                        
+                        }
+                    }
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        top: 29px;
+                        left: 429px;
+                        background: $white;
+                        width: 1px;
+                        height: 356px;
+                        @include media-query(1699px){
+                            height: 310px;
+                        }
+                        @include media-query(1599px){
+                            left: 370px;
+                            height: 220px;
+                        }
+                        @include media-query(1399px){
+                            left: 330px;
+                        }
+                        @include media-query(1199px){
+                            left: 286px;
+                            top: 0;
+                        }
+                        @include media-query(1024px){
+                            left: 230px;
+                            height: 180px;
+                        }
+                        @include media-query(820px){
+                            left: 150px;
+                        }
+                        @include media-query(768px){
+                            height: 134px;
+                            top: 16px;
+                        }
+                        @include media-query(575px){
+                            display: none;
+                        }
+                    }
+                }
+
+                .footer_menu {
+                    margin-top: 34px;
+                    @include media-query(820px){
+                        margin-top: 8px;
+                    }
+                    @include media-query(430px){
+                        display: none;
+                    }
+                    .timing {
+                        display: flex;
+                        justify-content: space-between;
+                    }
+                }
+            }
+
+            .company-name {
+                font-family: $font-primary;
+                font-size: 200px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 120%;
+                letter-spacing: -4px;
+                color: $white;
+                position: relative;
+                @include media-query(1699px){
+                    text-align: center;
+                    font-size: 156px;
+                }
+                @include media-query(1399px){
+                    font-size: 146px;
+                }
+                @include media-query(1299px){
+                    font-size: 134px;
+                }
+                @include media-query(1199px){
+                    font-size: 100px;
+                }
+                @include media-query(1024px){
+                    font-size: 80px;
+                    position: relative;
+                    top: -16px;
+                }
+                @include media-query(992px){
+                    top: -6px;
+                }
+                @include media-query(820px){
+                    top: -24px;
+                    font-size: 56px;
+                }
+                @include media-query(575px){
+                    top: -8px;
+                }
+                @include media-query(430px){
+                    font-size: 50px;
+                    top: -18px;
+                    padding-left: 8px;
+                }
+                @include media-query(399px){
+                    font-size: 46px;
+                }
+                
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    background: $white;
+                    width: 103%;
+                    height: 1px;
+                    @include media-query(1699px){
+                        width: 105%;
+                        left: 0;
+                    }
+                }
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    background: $white;
+                    width: 103%;
+                    height: 1px;
+                    @include media-query(1699px){
+                        width: 105%;
+                        left: 0;
+                    }
+                }
+                a{
+                    padding-left: 42px;
+                    @include media-query(1399px){
+                        padding-left: 0;
+                    }
+                }
+            }
+
+            .bottom-bar{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 32px 19px;
+                @include media-query(1499px){
+                    padding: 18px 0px 18px 32px;
+                }
+                @include media-query(1399px){
+                    padding: 18px 18px 32px;
+                }
+                @include media-query(1024px){
+                    padding: 0 12px;
+                }
+                @include media-query(992px){
+                    padding: 8px 8px 8px 18px;
+                }
+                @include media-query(820px){
+                    padding: 8px 8px 8px 18px;
+                    padding-left: 20px;
+                    position: relative;
+                    top: -24px;
+                }
+                @include media-query(768px){
+                    padding: 0px 8px 8px 18px;
+                }
+                @include media-query(575px){
+                    top: 0px;
+                }
+                @include media-query(430px){
+                    top: -10px;
+                }
+                h5{
+                    @include media-query(430px){
+                        font-size: 2vw;
+                    }
+                }
+                .social-icons{
+                    display: flex;
+                    align-items: center;
+                    gap: 24px;
+                    @include media-query(399px){
+                        gap: 16px;
+                    }
+                    a{
+                        svg{
+                            @include media-query(992px){
+                                width: 24px;
+                            }
+                            @include media-query(768px){
+                                width: 20px;
+                            }
+                            @include media-query(399px){
+                                width: 16px;
+                            }
+                            .icon{
+                                transition: $transition;
+                            }
+                            
+                        }
+                        &:hover{
+                            svg{
+                                .icon{
+                                    fill: $accent-1;
+                                    transition: $transition;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,219 @@
+/*-------------------------
+  Form Styling
+-------------------------*/
+.form-group {
+  position: relative;
+}
+
+.select-range {
+  position: relative;
+
+  select {
+    option {
+      background: #475055;
+      color: $white;
+      font-size: 22px;
+      font-family: $font-sec;
+      padding: 8px 0;
+
+      &:hover {
+        background: $accent-1;
+      }
+
+      &:first-child {
+        border-radius: 10px 10px 0 0;
+      }
+
+      &:last-child {
+        border-radius: 0px 0px 10px 10px;
+      }
+    }
+  }
+
+  &::after {
+    content: "\f0d7";
+    font-family: "Font Awesome 5 Pro";
+    position: absolute;
+    right: 40px;
+    top: 34px;
+    font-weight: 700;
+    font-size: 30px;
+    color: #FFFFFF;
+    transition: $transition;
+  }
+}
+
+
+textarea.form-control {
+  min-height: 142px;
+  max-height: 120px;
+
+  @media(max-width: 578px) {
+    min-height: 58px;
+    max-height: 58px;
+
+
+  }
+
+}
+
+.form-label {
+  font-family: $font-primary;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.32px;
+
+  @media(max-width: 578px) {
+    font-size: 14px;
+  }
+
+  &.bold {
+    font-weight: 700;
+  }
+}
+
+.form-control {
+  padding: 16px;
+  border-radius: 20px;
+  border: 1px solid $dark-black;
+  background: $white;
+  font-family: $body-text;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: 0.32px;
+  position: relative;
+  color: $dark-black;
+  box-shadow: none;
+
+  &.border {
+    border-color: $accent-1 !important;
+  }
+
+  &:focus {
+    box-shadow: none;
+    outline: 0;
+    color: $dark-black !important;
+    background: transparent;
+  }
+
+  &:hover {
+    color: $dark-black !important;
+  }
+
+  &::placeholder {
+    color: $dark-black;
+    opacity: 1;
+  }
+}
+
+.form-selector {
+  padding: 16px;
+  border-radius: 15px;
+  border: 1px solid $dark-black;
+  background: $white;
+  font-family: $body-text;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: 0.32px;
+  position: relative;
+  color: $white;
+  box-shadow: none;
+
+  width: 100%;
+  display: block;
+  padding: 16px;
+  border-radius: 15px;
+  border: 1px solid $dark-black;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: 0.32px;
+  position: relative;
+  color: $dark-black;
+  box-shadow: none;
+
+  select {
+    background: transparent;
+    border: 0;
+    width: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 16px;
+    background: url('../media/vectors/down-arrow.png') 100% no-repeat;
+    &:focus-visible {
+      box-shadow: none;
+      outline: 0;
+    }
+  }
+
+  option {
+    background: $white;
+    color: $dark-black;
+    padding: 6px 12px;
+
+    &:hover {
+      background: $dark-black;
+      color: $white;
+    }
+  }
+
+  
+  &:focus {
+    box-shadow: none;
+    outline: 0;
+    color: $white !important;
+    background: transparent;
+  }
+
+  &:hover {
+    color: $white !important;
+
+  }
+
+  &::placeholder {
+    color: $medium-gray;
+    opacity: 1;
+  }
+}
+
+[type="file"] {
+  padding-left: 42px;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    top: 18px;
+    left: 16px;
+    width: 16px;
+    height: 16px;
+    content: url(../media/vector/attached.png);
+    color: $accent-1;
+  }
+
+  &::-webkit-file-upload-button {
+    display: none;
+    background: transparent;
+    border: none;
+    border-radius: 0px;
+    color: $accent-1;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 16px;
+    font-family: $font-sec;
+    outline: none;
+    padding: 0;
+
+    transition: all 1s ease;
+  }
+}
+
+label {
+  &.error {
+    color: black;
+  }
+}
