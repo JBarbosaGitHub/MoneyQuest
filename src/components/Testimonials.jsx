@@ -2,16 +2,17 @@ import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 
+
 export default function Testimonials(){
   return (
-    <section className="testimonials" id="testimonials">
-      <div className="container-fluid">
-        <div className="heading">
+    <section className="testimonials fade-in" id="testimonials">
+      <div className="container-fluid fade-in">
+        <div className="heading fade-in">
           <h2 className="black mb-48"><span className="banner-text" title="TESTIMONIALS"> TESTIMONIALS</span></h2>
         </div>
       </div>
       <Swiper
-        className="testimonials-slider"
+        className="testimonials-slider fade-in"
         spaceBetween={24}
         slidesPerView={3}
         loop={true}
@@ -22,8 +23,8 @@ export default function Testimonials(){
         }}
       >
         <SwiperSlide>
-          <div className="testimonials-block">
-            <div className="title mb-32">
+          <div className="testimonials-block fade-in">
+            <div className="title mb-32 fade-in">
               <img src="/assets/media/icons/testimonial-1.png" alt="" />
               <div>
                 <h4 className="h-28 fw-700 black mb-8">NAME OF PERSON</h4>
@@ -34,8 +35,8 @@ export default function Testimonials(){
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="testimonials-block">
-            <div className="title mb-32">
+          <div className="testimonials-block fade-in">
+            <div className="title mb-32 fade-in">
               <img src="/assets/media/icons/testimonial-1.png" alt="" />
               <div>
                 <h4 className="h-28 fw-700 black mb-8">NAME OF PERSON</h4>
@@ -46,8 +47,8 @@ export default function Testimonials(){
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="testimonials-block">
-            <div className="title mb-32">
+          <div className="testimonials-block fade-in">
+            <div className="title mb-32 fade-in">
               <img src="/assets/media/icons/testimonial-1.png" alt="" />
               <div>
                 <h4 className="h-28 fw-700 black mb-8">NAME OF PERSON</h4>

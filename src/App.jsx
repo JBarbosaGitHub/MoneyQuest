@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+
+import React, { useState, useEffect } from 'react'
+import Lottie from 'lottie-react'
 import Header from './components/Header'
 import Banner from './components/Banner'
 import Services from './components/Services'
@@ -10,10 +12,29 @@ import ContactPopup from './components/ContactPopup'
 
 export default function App(){
   const [openPopup, setOpenPopup] = useState(false)
+
+  const [loading, setLoading] = useState(true)
   const openContactPopup = () => setOpenPopup(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2600)
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
     <div>
+      {loading && (
+        <div id="preloader" className="preloader-animated">
+          <div className="loader">
+            <Lottie
+              path="/assets/media/finpro.json"
+              loop={false}
+              autoplay
+              style={{ width: 320, height: 320 }}
+            />
+          </div>
+        </div>
+      )}
       <Header onOpenContact={openContactPopup} />
       <main id="main-wrapper" className="main-wrapper overflow-hidden">
         <Banner onOpenContact={openContactPopup} />

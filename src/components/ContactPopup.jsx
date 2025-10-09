@@ -3,8 +3,12 @@ import React, { useState, useEffect } from 'react'
 export default function ContactPopup({ open, onClose }){
   const [formState, setFormState] = useState({ name: '', email: '', phone: '', company_name: '', message_project: '' })
   const [submitted, setSubmitted] = useState(false)
+  const [faqOpen, setFaqOpen] = useState(null)
 
-  const handleChange = (e) => setFormState(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  // Prevent text from disappearing by always showing value
+  const handleChange = (e) => {
+    setFormState(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -60,15 +64,15 @@ export default function ContactPopup({ open, onClose }){
               </ul>
             </div>
           </div>
-          <div className="col-xl-7 col-lg-8">
+          <div className="col-xl-7 col-lg-8 fade-in">
             <div className="parent">
               {submitted ? (
-                <div className="thanksMessage">
+                <div className="thanksMessage fade-in">
                   <h2 className="h-47 fw-700 white mb-16 mt-5">Thanks For Reaching Out</h2>
                   <p className="text-14 fw-500 white-sec mb-48">Our team are reviewing your enquiry, and will be in touch shortly.</p>
                 </div>
               ) : (
-                <div className="form-content-wrap">
+                <div className="form-content-wrap fade-in">
                   <form action="/" className="form-group contact-form mb-48" id="contact-form" method="post" onSubmit={handleSubmit}>
                     <div className="row">
                       <div className="col-md-6 mb-32">
@@ -93,7 +97,43 @@ export default function ContactPopup({ open, onClose }){
                     <button type="submit" className="cus-btn-2 w-100">SEND MESSAGE &nbsp;&nbsp;<i className="fal fa-chevron-right"></i></button>
                     <div id="message" className="alert-msg"></div>
                   </form>
+                  {/* FAQ Section - styled as cards with icons */}
+                  <div className="faq-section mt-48">
+                    <h4 className="h-28 fw-700 dark-black mb-16">FAQ'S</h4>
+                    {[{
+                      q: 'How do I contact support?',
+                      a: 'You can use the contact form or email us at info@example.com.'
+                    }, {
+                      q: 'What are your business hours?',
+                      a: 'We are open Monday to Friday, 9AM to 5PM, and weekends 11AM to 6PM.'
+                    }, {
+                      q: 'How soon will I get a response?',
+                      a: 'We aim to respond within 24 hours to all enquiries.'
+                    }].map((item, idx) => (
+                      <div key={idx} className={`faq-card mb-16${faqOpen===idx ? ' open' : ''}`} style={{background:'#fff', borderRadius:'12px', boxShadow:'0 2px 8px rgba(0,0,0,0.04)', padding:'16px 24px', display:'flex', alignItems:'center', justifyContent:'space-between'}}>
+                        <div style={{flex:'1'}}>
+                          <div className="faq-question h-16 fw-500" style={{cursor:'pointer'}} onClick={()=>setFaqOpen(faqOpen===idx?null:idx)}>
+                            {item.q}
+                          </div>
+                          {faqOpen===idx && <div className="faq-answer h-16 fw-400 mt-8" style={{color:'#333'}}>{item.a}</div>}
+                        </div>
+                        <button
+                          className="faq-toggle-btn"
+                          aria-label={faqOpen===idx ? 'Collapse' : 'Expand'}
+                          onClick={()=>setFaqOpen(faqOpen===idx?null:idx)}
+                          style={{background:'none', border:'none', outline:'none', cursor:'pointer', marginLeft:'16px', fontSize:'24px', display:'flex', alignItems:'center'}}
+                        >
+                          {faqOpen===idx ? (
+                            <span style={{fontWeight:'bold', fontSize:'24px'}}>−</span>
+                          ) : (
+                            <span style={{fontWeight:'bold', fontSize:'24px'}}>+</span>
+                          )}
+                        </button>
+                      </div>
+                    ))}
+                  </div>
                 </div>
+
               )}
             </div>
           </div>

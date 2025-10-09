@@ -13,16 +13,17 @@ function AccordionItem({title, children, isOpen, onToggle}){
   )
 }
 
+
 export default function Banner({ onOpenContact }){
   const [openIndex, setOpenIndex] = useState(0)
 
   const toggle = (i) => setOpenIndex(prev => prev === i ? -1 : i)
 
   return (
-    <section className="banner">
+    <section className="banner fade-in">
       <div className="container-fluid">
         <div className="row">
-          <div className="col-xl-7 col-lg-7 col-md-7 col-sm-7 order-sm-1 order-2">
+          <div className="col-xl-7 col-lg-7 col-md-7 col-sm-7 order-sm-1 order-2 fade-in">
             <div className="text-block">
               <h1 className="black mb-32"><span className="banner-text" title="MASTERING">MASTERING</span><br/> <span className="rotate-text">YOUR</span> <span className="banner-text color-primary" title="FINANCE">FINANCE</span></h1>
               <p className="dark-black h-16 body-text mb-32">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero accusamus incidunt, animi commodi nemo maiores nihil eius nulla, reprehenderit dolor tempore.</p>
@@ -31,7 +32,7 @@ export default function Banner({ onOpenContact }){
               </div>
             </div>
           </div>
-          <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 order-sm-2 order-1">
+          <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 order-sm-2 order-1 fade-in">
             <div className="image-block">
               <div className="banner-image">
                 <img src="/assets/media/images/hero-banner.png" alt="" className="first" />
@@ -40,10 +41,10 @@ export default function Banner({ onOpenContact }){
           </div>
         </div>
       </div>
-      <div className="about-sec" id="about">
+      <div className="about-sec fade-in" id="about">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-xl-7 col-lg-7 col-md-7 col-sm-7">
+            <div className="col-xl-7 col-lg-7 col-md-7 col-sm-7 fade-in">
               <div className="accordion_block">
                 <AccordionItem title="OUR STORY" isOpen={openIndex===0} onToggle={() => toggle(0)}>
                   <p className="h-16 body-text dark-gray fw-400 mb-16 mt-24">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi quidem quaerat expedita aspernatur natus ipsam impedit nobis delectus eligendi ea tenetur...</p>
@@ -56,7 +57,7 @@ export default function Banner({ onOpenContact }){
                 </AccordionItem>
               </div>
             </div>
-            <div className="col-xl-5 col-lg-5 col-md-5">
+            <div className="col-xl-5 col-lg-5 col-md-5 fade-in">
               <img src="/assets/media/about/image-1.png" alt="" className="about-main-image" />
             </div>
           </div>
