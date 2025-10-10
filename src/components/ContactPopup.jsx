@@ -38,7 +38,7 @@ export default function ContactPopup({ open, onClose }){
       <div className="overlay" onClick={onClose} style={{ transform: 'scale(1)', opacity: 0.5 }}></div>
       <div className="content">
         <div className="row">
-          <div className="col-xl-5 col-lg-4">
+          <div className="col-xl-5 col-lg-4 fade-in">
             <div className="company-contact-detail">
               <button className="close-btn begin-popupClose" type="button" onClick={onClose}>GO BACK</button>
               <h2 className="h-90 fw-800 black mb-8">GET IN <span>TOUCH</span></h2>
@@ -110,18 +110,17 @@ export default function ContactPopup({ open, onClose }){
                       q: 'How soon will I get a response?',
                       a: 'We aim to respond within 24 hours to all enquiries.'
                     }].map((item, idx) => (
-                      <div key={idx} className={`faq-card mb-16${faqOpen===idx ? ' open' : ''}`} style={{background:'#fff', borderRadius:'12px', boxShadow:'0 2px 8px rgba(0,0,0,0.04)', padding:'16px 24px', display:'flex', alignItems:'center', justifyContent:'space-between'}}>
+                      <div key={idx} className={`faq-card mb-16${faqOpen===idx ? ' open' : ''}`}>
                         <div style={{flex:'1'}}>
-                          <div className="faq-question h-16 fw-500" style={{cursor:'pointer'}} onClick={()=>setFaqOpen(faqOpen===idx?null:idx)}>
+                          <div className="faq-question h-16 fw-500" onClick={()=>setFaqOpen(faqOpen===idx?null:idx)}>
                             {item.q}
                           </div>
-                          {faqOpen===idx && <div className="faq-answer h-16 fw-400 mt-8" style={{color:'#333'}}>{item.a}</div>}
+                          {faqOpen===idx && <div className="faq-answer h-16 fw-400 mt-8">{item.a}</div>}
                         </div>
                         <button
                           className="faq-toggle-btn"
                           aria-label={faqOpen===idx ? 'Collapse' : 'Expand'}
                           onClick={()=>setFaqOpen(faqOpen===idx?null:idx)}
-                          style={{background:'none', border:'none', outline:'none', cursor:'pointer', marginLeft:'16px', fontSize:'24px', display:'flex', alignItems:'center'}}
                         >
                           {faqOpen===idx ? (
                             <span style={{fontWeight:'bold', fontSize:'24px'}}>−</span>

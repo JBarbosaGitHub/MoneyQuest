@@ -9,16 +9,37 @@ import Testimonials from './components/Testimonials'
 import Team from './components/Team'
 import Footer from './components/Footer'
 import ContactPopup from './components/ContactPopup'
+import useReveal from './hooks/useReveal'
 
 export default function App(){
   const [openPopup, setOpenPopup] = useState(false)
 
   const [loading, setLoading] = useState(true)
   const openContactPopup = () => setOpenPopup(true)
+  const [lottieData, setLottieData] = useState(null)
+
+  // Initialize scroll reveal once
+  useReveal && useReveal('.reveal')
 
   useEffect(() => {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setLoading(false)
+      return
+    }
     const timer = setTimeout(() => setLoading(false), 2600)
     return () => clearTimeout(timer)
+  }, [])
+
+  // Fetch Lottie JSON from public folder (works in dev and prod)
+  useEffect(() => {
+    let active = true
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduce) return
+    fetch('/assets/media/finpro.json')
+      .then(r => r.ok ? r.json() : Promise.reject(new Error('Failed to load Lottie JSON')))
+      .then(json => { if (active) setLottieData(json) })
+      .catch(() => {})
+    return () => { active = false }
   }, [])
 
   return (
@@ -26,12 +47,17 @@ export default function App(){
       {loading && (
         <div id="preloader" className="preloader-animated">
           <div className="loader">
-            <Lottie
-              path="/assets/media/finpro.json"
-              loop={false}
-              autoplay
-              style={{ width: 320, height: 320 }}
-            />
+            {lottieData ? (
+              <Lottie
+                animationData={lottieData}
+                loop={false}
+                autoplay
+                style={{ width: 320, height: 320 }}
+                onComplete={() => setLoading(false)}
+              />
+            ) : (
+              <img src="/assets/media/logo.png" alt="Logo" style={{ width: 320, height: 320 }} />
+            )}
           </div>
         </div>
       )}
