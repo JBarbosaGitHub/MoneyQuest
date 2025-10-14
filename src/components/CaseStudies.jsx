@@ -1,87 +1,142 @@
 import React, { useState } from 'react'
+import BudgetSimulator from './simulators/BudgetSimulator'
+import InvestmentSimulator from './simulators/InvestmentSimulator'
+import BusinessViabilityCalculator from './simulators/BusinessViabilityCalculator'
+import RetirementPlanningSimulator from './simulators/RetirementPlanningSimulator'
+import BondInvestmentSimulator from './simulators/BondInvestmentSimulator'
+import EducationSavingsSimulator from './simulators/EducationSavingsSimulator'
+import SimulatorPopup from './SimulatorPopup'
 
-export default function CaseStudies(){
-  const [active, setActive] = useState('detail-1')
-
-  const handleClick = (id) => {
-    setActive(id)
+const simulators = [
+  {
+    id: 'budget',
+    name: 'Simulador de Orçamento',
+    logo: '/assets/media/brand-logo/brand-logo-1.png',
+    image: '/assets/media/brand-logo/brand-img-1.png',
+    component: <BudgetSimulator />,
+    description: 'Planeie o seu orçamento mensal e otimize despesas e poupança.'
+  },
+  {
+    id: 'investment',
+    name: 'Simulador de Investimento',
+    logo: '/assets/media/brand-logo/brand-logo-2.png',
+    image: '/assets/media/brand-logo/brand-img-2.png',
+    component: <InvestmentSimulator />,
+    description: 'Analise cenários de investimento e risco com Monte Carlo.'
+  },
+  {
+    id: 'business',
+    name: 'Viabilidade de Negócio',
+    logo: '/assets/media/brand-logo/brand-logo-3.png',
+    image: '/assets/media/brand-logo/brand-img-3.png',
+    component: <BusinessViabilityCalculator />,
+    description: 'Projete a viabilidade financeira do seu negócio.'
+  },
+  {
+    id: 'retirement',
+    name: 'Planeamento de Reforma',
+    logo: '/assets/media/brand-logo/brand-logo-4.png',
+    image: '/assets/media/brand-logo/brand-img-4.png',
+    component: <RetirementPlanningSimulator />,
+    description: 'Simule o seu plano de reforma e avalie o gap financeiro.'
+  },
+  {
+    id: 'bond',
+    name: 'Investimento em Obrigações',
+    logo: '/assets/media/brand-logo/brand-logo-5.png',
+    image: '/assets/media/brand-logo/brand-img-5.png',
+    component: <BondInvestmentSimulator />,
+    description: 'Avalie obrigações, YTM, risco e retornos líquidos.'
+  },
+  {
+    id: 'education',
+    name: 'Poupança para Educação',
+    logo: '/assets/media/brand-logo/brand-logo-6.png',
+    image: '/assets/media/brand-logo/brand-img-6.png',
+    component: <EducationSavingsSimulator />,
+    description: 'Projete custos de educação e plano de poupança familiar.'
   }
+]
+
+export default function CaseStudies() {
+  const [openSim, setOpenSim] = useState(null)
 
   return (
-    <section className="case-studies reveal" id="case-studies">
+    <section className="simulators reveal" id="simulators">
       <div className="container-fluid">
-        <div className="heading reveal">
-          <h2 className="black mb-48"><span className="banner-text" title="CASE STUDIES"> CASE STUDIES</span></h2>
+        <div className="heading reveal" style={{ marginBottom: '48px' }}>
+          <h2 className="black mb-48"><span className="banner-text" title="SIMULADORES">SIMULADORES</span></h2>
         </div>
-        <div className="row">
-          <div className="col-xl-6 col-lg-6 reveal">
-            <div className="brand-area">
-              <button type="button" onClick={() => handleClick('detail-1')} className={`square project ${active==='detail-1'? 'active':''}`} id="detail-1">Brand 1</button>
-              <button type="button" onClick={() => handleClick('detail-2')} className={`square project ${active==='detail-2'? 'active':''}`} id="detail-2">Brand 2</button>
-              <button type="button" onClick={() => handleClick('detail-3')} className={`square project ${active==='detail-3'? 'active':''}`} id="detail-3">Brand 3</button>
-              <button type="button" onClick={() => handleClick('detail-4')} className={`square project ${active==='detail-4'? 'active':''}`} id="detail-3">Brand 4</button>
-              <button type="button" onClick={() => handleClick('detail-5')} className={`square project ${active==='detail-5'? 'active':''}`} id="detail-3">Brand 5</button>
-              <button type="button" onClick={() => handleClick('detail-6')} className={`square project ${active==='detail-6'? 'active':''}`} id="detail-3">Brand 6</button>
-              <button type="button" onClick={() => handleClick('detail-7')} className={`square project ${active==='detail-7'? 'active':''}`} id="detail-3">Brand 7</button>
-              <button type="button" onClick={() => handleClick('detail-8')} className={`square project ${active==='detail-8'? 'active':''}`} id="detail-3">Brand 8</button>
-              <button type="button" onClick={() => handleClick('detail-9')} className={`square project ${active==='detail-9'? 'active':''}`} id="detail-3">Brand 9</button>
-            </div>
-          </div>
-          <div className="col-xl-6 col-lg-6 reveal">
-            <div className={`brand-detail detail-1 ${active==='detail-1'? 'active':''}`}>
-              <img src="/assets/media/vectors/shape-2.png" alt="" className="bg-shape" loading="lazy" decoding="async" />
-              <div className="detail-content">
-                <div className="image-block mb-40">
-                  <img src="/assets/media/brand-logo/brand-img-1.png" alt="" className="detailContent_image" loading="lazy" decoding="async" />
-                </div>
-                <div className="text-block">
-                  <img src="/assets/media/brand-logo/brand-logo-1.png" alt="" className="detail-logo" loading="lazy" decoding="async" />
-                  <div className="vr-line"></div>
-                  <p className="h-16 fw-400 black">Lorem ipsum dolor sit amet consectetur.</p>
-                </div>
-              </div>
-            </div>
-            <div className={`brand-detail detail-2 ${active==='detail-2'? 'active':''}`} style={{display: active==='detail-2' ? 'block' : 'none'}}>
-              <img src="/assets/media/vectors/shape-2.png" alt="" className="bg-shape" loading="lazy" decoding="async" />
-              <div className="detail-content">
-                <div className="image-block mb-40">
-                  <img src="/assets/media/brand-logo/brand-img-2.png" alt="" className="detailContent_image" loading="lazy" decoding="async" />
-                </div>
-                <div className="text-block">
-                  <img src="/assets/media/brand-logo/brand-logo-2.png" alt="" className="detail-logo" loading="lazy" decoding="async" />
-                  <div className="vr-line"></div>
-                  <p className="h-16 fw-400 black">Alternate brand description for brand 2.</p>
-                </div>
-              </div>
-            </div>
-            <div className={`brand-detail detail-3 ${active==='detail-3'? 'active':''}`} style={{display: active==='detail-3' ? 'block' : 'none'}}>
-              <img src="/assets/media/vectors/shape-2.png" alt="" className="bg-shape" loading="lazy" decoding="async" />
-              <div className="detail-content">
-                <div className="image-block mb-40">
-                  <img src="/assets/media/brand-logo/brand-img-3.png" alt="" className="detailContent_image" loading="lazy" decoding="async" />
-                </div>
-                <div className="text-block">
-                  <img src="/assets/media/brand-logo/brand-logo-3.png" alt="" className="detail-logo" loading="lazy" decoding="async" />
-                  <div className="vr-line"></div>
-                  <p className="h-16 fw-400 black">Alternate brand description for brand 3.</p>
-                </div>
-              </div>
-            </div>
-            <div className={`brand-detail detail-4 ${active==='detail-4'? 'active':''}`} style={{display: active==='detail-4' ? 'block' : 'none'}}>
-              <img src="/assets/media/vectors/shape-2.png" alt="" className="bg-shape" loading="lazy" decoding="async" />
-              <div className="detail-content">
-                <div className="image-block mb-40">
-                  <img src="/assets/media/brand-logo/brand-img-4.png" alt="" className="detailContent_image" />
-                </div>
-                <div className="text-block">
-                  <img src="/assets/media/brand-logo/brand-logo-4.png" alt="" className="detail-logo" />
-                  <div className="vr-line"></div>
-                  <p className="h-16 fw-400 black">Alternate brand description for brand 4.</p>
-                </div>
-              </div>
-            </div>
+        <div className="simulators-box" style={{
+          background: '#f8f9fa',
+          borderRadius: '24px',
+          boxShadow: '0 4px 24px rgba(0,0,0,0.07)',
+          padding: '32px 40px 40px 40px',
+          maxWidth: '1400px',
+          width: '100%',
+          margin: '0 auto',
+          border: '2px solid #222',
+        }}>
+          <div className="brand-area" style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gap: '40px',
+            justifyItems: 'center',
+            alignItems: 'center',
+            padding: '16px',
+            margin: '0 8px',
+          }}>
+            {simulators.map(sim => (
+              <button
+                key={sim.id}
+                type="button"
+                onClick={() => setOpenSim(sim.id)}
+                className="square project simulator-card"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '16px',
+                  padding: '40px 24px',
+                  borderRadius: '20px',
+                  background: '#f8f9fa',
+                  boxShadow: 'none',
+                  border: '2px solid #222',
+                  cursor: 'pointer',
+                  minHeight: '260px',
+                  width: '100%',
+                  maxWidth: '260px',
+                  margin: '8px',
+                  transition: 'all 0.3s ease',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-8px) scale(1.02)';
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.12)';
+                  e.currentTarget.style.borderColor = '#007bff';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                  e.currentTarget.style.boxShadow = 'none';
+                  e.currentTarget.style.borderColor = '#222';
+                }}
+              >
+                <span className="banner-text" style={{ textAlign: 'center', fontSize: '1.6rem', marginBottom: '8px', letterSpacing: '1px' }}>{sim.name}</span>
+                <img src={sim.image} alt={sim.name} style={{ width: 96, height: 96, borderRadius: '14px', objectFit: 'cover', margin: '8px 0' }} />
+                <p className="h-16 fw-400 dark-gray" style={{ textAlign: 'center', marginTop: '8px', fontSize: '1rem' }}>{sim.description}</p>
+              </button>
+            ))}
           </div>
         </div>
+        {simulators.map(sim => (
+          <SimulatorPopup
+            key={sim.id}
+            open={openSim === sim.id}
+            onClose={() => setOpenSim(null)}
+            title={sim.name}
+          >
+            {sim.component}
+          </SimulatorPopup>
+        ))}
       </div>
     </section>
   )

@@ -29,7 +29,7 @@ export default function Header({ onOpenContact }){
             <ul className="links list-unstyled">
               <li><a href="#about" onClick={() => setOpen(false)}>About</a></li>
               <li><a href="#service" onClick={() => setOpen(false)}>Services</a></li>
-              <li><a href="#case-studies" onClick={() => setOpen(false)}>Case Studies</a></li>
+              <li><a href="#case-studies" onClick={() => setOpen(false)}>Simuladores</a></li>
               <li><a href="#testimonials" onClick={() => setOpen(false)}>Testimonials</a></li>
               <li><a href="#team" onClick={() => setOpen(false)}>Team</a></li>
             </ul>
