@@ -51,6 +51,9 @@ export default function SimulatorPopup({ open, onClose, title, children }) {
 
   if (!open) return null;
 
+  // Check if we're on mobile
+  const isMobile = window.innerWidth <= 768;
+
   return createPortal(
     <div
       className="begin-popup"
@@ -66,6 +69,7 @@ export default function SimulatorPopup({ open, onClose, title, children }) {
         alignItems: 'center',
         justifyContent: 'center',
         overflow: 'hidden',
+        padding: '0',
       }}
       aria-modal="true"
       role="dialog"
@@ -80,12 +84,12 @@ export default function SimulatorPopup({ open, onClose, title, children }) {
           left: 0,
           width: '100vw',
           height: '100vh',
-          transform: 'scale(1)',
-          opacity: 0.5,
+          background: 'rgba(0,0,0,0.6)',
           zIndex: 1,
           pointerEvents: 'auto',
-          cursor: 'not-allowed',
+          cursor: 'pointer',
         }}
+        onClick={onClose}
         aria-hidden="true"
       ></div>
       <div
@@ -94,30 +98,33 @@ export default function SimulatorPopup({ open, onClose, title, children }) {
           position: 'relative',
           zIndex: 2,
           display: 'flex',
-          flexDirection: 'row',
-          width: '90vw',
-          maxWidth: '1600px',
-          minHeight: '80vh',
-          height: '90vh',
+          flexDirection: isMobile ? 'column' : 'row',
+          width: isMobile ? '95vw' : '90vw',
+          maxWidth: '1400px',
+          height: isMobile ? 'auto' : '85vh',
+          maxHeight: isMobile ? '85vh' : '85vh',
           background: '#fff',
           borderRadius: '24px',
           boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
-          overflow: 'visible',
+          overflow: 'hidden',
         }}
       >
         <div
           className="popup-left"
           style={{
-            flex: '0 0 340px',
+            flex: isMobile ? 'none' : '0 0 300px',
             background: '#fff',
-            padding: '40px 32px',
-            borderRight: '1.5px solid #e9ecef',
+            padding: isMobile ? '16px 12px' : '32px 24px',
+            borderRight: isMobile ? 'none' : '1.5px solid #e9ecef',
+            borderBottom: isMobile ? '1.5px solid #e9ecef' : 'none',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'flex-start',
-            minWidth: '260px',
-            height: '100%',
+            minWidth: isMobile ? '0' : '260px',
+            width: isMobile ? '100%' : 'auto',
+            height: isMobile ? 'auto' : '100%',
             boxSizing: 'border-box',
+            overflowY: 'visible',
           }}
         >
           <button
@@ -161,17 +168,20 @@ export default function SimulatorPopup({ open, onClose, title, children }) {
           style={{
             flex: '1 1 0%',
             background: '#f8f9fa',
-            padding: '32px 32px',
-            height: '100%',
+            padding: isMobile ? '16px 12px' : '24px 24px',
+            height: isMobile ? 'auto' : '100%',
+            maxHeight: isMobile ? '70vh' : '100%',
             overflowY: 'auto',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'flex-start',
             alignItems: 'stretch',
             boxSizing: 'border-box',
+            minWidth: 0,
+            minHeight: isMobile ? '250px' : 'auto',
           }}
         >
-          <div style={{ width: '100%', height: '100%' }}>{children}</div>
+          <div style={{ width: '100%' }}>{children}</div>
         </div>
       </div>
       {/* Responsive styles and prevent background scroll */}
@@ -228,14 +238,82 @@ export default function SimulatorPopup({ open, onClose, title, children }) {
           margin-left: 0 !important;
         }
         @media (max-width: 1200px) {
-          .begin-popup .content { flex-direction: column; min-height: 90vh; width: 98vw; }
-          .begin-popup .popup-left { flex: none; min-width: 0; width: 100%; border-right: none; border-bottom: 1.5px solid #e9ecef; padding: 32px 16px; height: auto; }
-          .begin-popup .popup-right { padding: 24px 8px; height: 100%; }
+          .begin-popup { 
+            padding: 20px;
+          }
+          .begin-popup .content { 
+            flex-direction: column; 
+            width: 90vw; 
+            height: auto; 
+            max-height: 90vh; 
+            overflow: hidden;
+            margin: auto;
+          }
+          .begin-popup .popup-left { 
+            flex: none; 
+            min-width: 0; 
+            width: 100%; 
+            border-right: none; 
+            border-bottom: 1.5px solid #e9ecef; 
+            padding: 20px 16px; 
+            height: auto; 
+          }
+          .begin-popup .popup-right { 
+            flex: 1;
+            padding: 20px 16px; 
+            height: auto; 
+            min-height: 400px;
+            overflow-y: auto;
+          }
         }
         @media (max-width: 800px) {
-          .begin-popup .content { min-height: 100vh; width: 100vw; border-radius: 0; }
-          .begin-popup .popup-left { padding: 24px 8px; }
-          .begin-popup .popup-right { padding: 12px 2px; }
+          .begin-popup { 
+            padding: 16px;
+          }
+          .begin-popup .content { 
+            width: 95vw; 
+            height: auto;
+            max-height: 85vh;
+            border-radius: 16px; 
+            display: flex;
+            flex-direction: column;
+          }
+          .begin-popup .popup-left { 
+            padding: 16px 12px;
+            flex-shrink: 0;
+          }
+          .begin-popup .popup-right { 
+            padding: 16px 12px;
+            flex: 1;
+            overflow-y: auto;
+            min-height: 300px;
+          }
+        }
+        @media (max-width: 430px) {
+          .begin-popup { 
+            padding: 8px;
+          }
+          .begin-popup .content { 
+            height: auto; 
+            max-height: 90vh;
+            width: 98vw;
+            border-radius: 12px;
+          }
+          .begin-popup .popup-left { 
+            padding: 12px 8px; 
+          }
+          .begin-popup .popup-right { 
+            padding: 12px 8px; 
+            font-size: 14px;
+            min-height: 250px;
+          }
+          .begin-popup .simulator-close-btn { 
+            font-size: 0.9rem !important; 
+            padding: 6px 12px !important; 
+          }
+          .begin-popup h2 {
+            font-size: 1.2rem !important;
+          }
         }
       `}</style>
     </div>,

@@ -60,6 +60,24 @@ const simulators = [
 
 export default function CaseStudies() {
   const [openSim, setOpenSim] = useState(null)
+  const [showAll, setShowAll] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Detect screen size
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Determine how many simulators to show
+  const initialCount = isMobile ? 3 : 8
+  const visibleCount = showAll ? simulators.length : initialCount
+  const visibleSimulators = simulators.slice(0, visibleCount)
+  const shouldShowButton = simulators.length > initialCount
 
   return (
     <section className="simulators reveal" id="simulators">
@@ -79,14 +97,14 @@ export default function CaseStudies() {
         }}>
           <div className="brand-area" style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
             gap: '40px',
             justifyItems: 'center',
             alignItems: 'center',
             padding: '16px',
             margin: '0 8px',
           }}>
-            {simulators.map(sim => (
+            {visibleSimulators.map(sim => (
               <button
                 key={sim.id}
                 type="button"
@@ -126,6 +144,46 @@ export default function CaseStudies() {
               </button>
             ))}
           </div>
+          
+          {shouldShowButton && (
+            <div className="show-more-container" style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginTop: '40px',
+            }}>
+              <button 
+                className="show-more-btn cus-btn-2"
+                onClick={() => setShowAll(!showAll)}
+                style={{
+                  fontFamily: '"Saira Condensed", sans-serif',
+                  padding: 'clamp(12px, 0.833vw, 24px) clamp(24px, 1.667vw, 48px)',
+                  letterSpacing: '0.021875vw',
+                  display: 'inline-block',
+                  textAlign: 'center',
+                  fontWeight: 'bold',
+                  fontSize: 'clamp(14px, 0.83vw, 30px)',
+                  borderRadius: '15px',
+                  position: 'relative',
+                  border: '0',
+                  boxShadow: '0px 6px 0px 0px #000',
+                  backgroundColor: '#5DAD9E',
+                  color: '#FAFDFF',
+                  textDecoration: 'none',
+                  transition: '0.3s ease all',
+                  zIndex: 1,
+                  cursor: 'pointer',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#7E8081';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '#5DAD9E';
+                }}
+              >
+                {showAll ? 'Mostrar Menos' : 'Mostrar Mais'}
+              </button>
+            </div>
+          )}
         </div>
         {simulators.map(sim => (
           <SimulatorPopup
