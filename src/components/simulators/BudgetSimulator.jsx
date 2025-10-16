@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react'
+import NumericInput from '../common/NumericInput'
 
 export default function BudgetSimulator() {
   const [inputs, setInputs] = useState({
@@ -15,6 +16,14 @@ export default function BudgetSimulator() {
   })
 
   const [errors, setErrors] = useState({})
+
+  // Function to format percentage values without unnecessary decimal zeros
+  const formatPercentage = (value) => {
+    return Number(value).toLocaleString('pt-PT', {
+      minimumFractionDigits: 0, 
+      maximumFractionDigits: 2
+    });
+  }
 
   const handleInputChange = (field, value) => {
     const numValue = parseFloat(value) || 0
@@ -167,74 +176,62 @@ export default function BudgetSimulator() {
 
               <div className="input-group mb-24">
                 <label className="h-16 fw-500 black mb-8">Rendimento Mensal Líquido (€)</label>
-                <input
-                  type="number"
-                  className="form-control"
+                <NumericInput
                   value={inputs.rendimentoMensalLiquido}
-                  onChange={(e) => handleInputChange('rendimentoMensalLiquido', e.target.value)}
-                  min="0"
-                  step="10"
+                  onValue={(v) => handleInputChange('rendimentoMensalLiquido', v)}
+                  min={0}
+                  step={10}
                 />
               </div>
 
               <div className="input-group mb-24">
                 <label className="h-16 fw-500 black mb-8">Despesas Fixas (€)</label>
-                <input
-                  type="number"
-                  className="form-control"
+                <NumericInput
                   value={inputs.despesasFixas}
-                  onChange={(e) => handleInputChange('despesasFixas', e.target.value)}
-                  min="0"
-                  step="10"
+                  onValue={(v) => handleInputChange('despesasFixas', v)}
+                  min={0}
+                  step={10}
                 />
               </div>
 
               <div className="input-group mb-24">
                 <label className="h-16 fw-500 black mb-8">Despesas Variáveis (€)</label>
-                <input
-                  type="number"
-                  className="form-control"
+                <NumericInput
                   value={inputs.despesasVariaveis}
-                  onChange={(e) => handleInputChange('despesasVariaveis', e.target.value)}
-                  min="0"
-                  step="10"
+                  onValue={(v) => handleInputChange('despesasVariaveis', v)}
+                  min={0}
+                  step={10}
                 />
               </div>
 
               <div className="input-group mb-24">
                 <label className="h-16 fw-500 black mb-8">Meta de Poupança Mensal (€)</label>
-                <input
-                  type="number"
-                  className="form-control"
+                <NumericInput
                   value={inputs.metaPoupancaMensal}
-                  onChange={(e) => handleInputChange('metaPoupancaMensal', e.target.value)}
-                  min="0"
-                  step="10"
+                  onValue={(v) => handleInputChange('metaPoupancaMensal', v)}
+                  min={0}
+                  step={10}
                 />
               </div>
 
               <div className="input-group mb-24">
                 <label className="h-16 fw-500 black mb-8">Dívida Mensal (€)</label>
-                <input
-                  type="number"
-                  className="form-control"
+                <NumericInput
                   value={inputs.dividaMensal}
-                  onChange={(e) => handleInputChange('dividaMensal', e.target.value)}
-                  min="0"
-                  step="10"
+                  onValue={(v) => handleInputChange('dividaMensal', v)}
+                  min={0}
+                  step={10}
                 />
               </div>
 
               <div className="input-group mb-24">
                 <label className="h-16 fw-500 black mb-8">Meses de Projeção</label>
-                <input
-                  type="number"
-                  className="form-control"
+                <NumericInput
                   value={inputs.mesesProjetados}
-                  onChange={(e) => handleInputChange('mesesProjetados', e.target.value)}
-                  min="1"
-                  max="60"
-                  step="1"
+                  onValue={(v) => handleInputChange('mesesProjetados', v)}
+                  min={1}
+                  max={60}
+                  step={1}
                 />
               </div>
 
@@ -243,40 +240,37 @@ export default function BudgetSimulator() {
                 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-400 black mb-4">Taxa de Imposto (%)</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    value={inputs.taxaImposto * 100}
-                    onChange={(e) => handleInputChange('taxaImposto', e.target.value / 100)}
-                    min="0"
-                    max="50"
-                    step="0.1"
+                  <NumericInput
+                    value={inputs.taxaImposto}
+                    percent
+                    onValue={(v) => handleInputChange('taxaImposto', v)}
+                    min={0}
+                    max={50}
+                    step={0.1}
                   />
                 </div>
 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-400 black mb-4">Taxa de Inflação Anual (%)</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    value={inputs.taxaInflacaoAnual * 100}
-                    onChange={(e) => handleInputChange('taxaInflacaoAnual', e.target.value / 100)}
-                    min="0"
-                    max="10"
-                    step="0.1"
+                  <NumericInput
+                    value={inputs.taxaInflacaoAnual}
+                    percent
+                    onValue={(v) => handleInputChange('taxaInflacaoAnual', v)}
+                    min={0}
+                    max={10}
+                    step={0.1}
                   />
                 </div>
 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-400 black mb-4">Juros da Dívida Anual (%)</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    value={inputs.jurosDividaAnual * 100}
-                    onChange={(e) => handleInputChange('jurosDividaAnual', e.target.value / 100)}
-                    min="0"
-                    max="30"
-                    step="0.1"
+                  <NumericInput
+                    value={inputs.jurosDividaAnual}
+                    percent
+                    onValue={(v) => handleInputChange('jurosDividaAnual', v)}
+                    min={0}
+                    max={30}
+                    step={0.1}
                   />
                 </div>
               </div>

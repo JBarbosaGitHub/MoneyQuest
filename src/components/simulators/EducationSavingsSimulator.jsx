@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react'
+import NumericInput from '../common/NumericInput'
 
 export default function EducationSavingsSimulator() {
   const [inputs, setInputs] = useState({
@@ -17,6 +18,14 @@ export default function EducationSavingsSimulator() {
   })
 
   const [errors, setErrors] = useState({})
+
+  // Function to format percentage values without unnecessary decimal zeros
+  const formatPercentage = (value) => {
+    return Number(value).toLocaleString('pt-PT', {
+      minimumFractionDigits: 0, 
+      maximumFractionDigits: 2
+    });
+  }
 
   const handleInputChange = (field, value) => {
     const numValue = parseFloat(value) || 0
@@ -298,27 +307,23 @@ export default function EducationSavingsSimulator() {
                 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-500 black mb-4">Idade Atual da Criança</label>
-                  <input
-                    type="number"
-                    className="form-control"
+                  <NumericInput
                     value={inputs.idadeAtualCrianca}
-                    onChange={(e) => handleInputChange('idadeAtualCrianca', e.target.value)}
-                    min="0"
-                    max="17"
-                    step="1"
+                    onValue={(v) => handleInputChange('idadeAtualCrianca', v)}
+                    min={0}
+                    max={17}
+                    step={1}
                   />
                 </div>
 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-500 black mb-4">Idade de Entrada no Ensino Superior</label>
-                  <input
-                    type="number"
-                    className="form-control"
+                  <NumericInput
                     value={inputs.idadeEnsinoSuperior}
-                    onChange={(e) => handleInputChange('idadeEnsinoSuperior', e.target.value)}
-                    min="16"
-                    max="25"
-                    step="1"
+                    onValue={(v) => handleInputChange('idadeEnsinoSuperior', v)}
+                    min={16}
+                    max={25}
+                    step={1}
                   />
                 </div>
 
@@ -337,14 +342,12 @@ export default function EducationSavingsSimulator() {
 
                 <div className="input-group">
                   <label className="h-14 fw-500 black mb-4">Duração da Educação (Anos)</label>
-                  <input
-                    type="number"
-                    className="form-control"
+                  <NumericInput
                     value={inputs.duracaoEducacao}
-                    onChange={(e) => handleInputChange('duracaoEducacao', e.target.value)}
-                    min="1"
-                    max="8"
-                    step="1"
+                    onValue={(v) => handleInputChange('duracaoEducacao', v)}
+                    min={1}
+                    max={8}
+                    step={1}
                   />
                   <small className="h-12 fw-400 dark-gray mt-4">Licenciatura: 3 anos | Mestrado: +2 anos</small>
                 </div>
@@ -355,55 +358,48 @@ export default function EducationSavingsSimulator() {
                 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-500 black mb-4">Custo Anual Total Atual (€)</label>
-                  <input
-                    type="number"
-                    className="form-control"
+                  <NumericInput
                     value={inputs.custoAnualEducacao}
-                    onChange={(e) => handleInputChange('custoAnualEducacao', e.target.value)}
-                    min="500"
-                    step="100"
+                    onValue={(v) => handleInputChange('custoAnualEducacao', v)}
+                    min={500}
+                    step={100}
                   />
                   <small className="h-12 fw-400 dark-gray mt-4">Inclui propinas, alimentação, material didático</small>
                 </div>
 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-500 black mb-4">Custos Extras Anuais (€)</label>
-                  <input
-                    type="number"
-                    className="form-control"
+                  <NumericInput
                     value={inputs.custoExtra}
-                    onChange={(e) => handleInputChange('custoExtra', e.target.value)}
-                    min="0"
-                    step="50"
+                    onValue={(v) => handleInputChange('custoExtra', v)}
+                    min={0}
+                    step={50}
                   />
                   <small className="h-12 fw-400 dark-gray mt-4">Residência universitária, transporte, etc.</small>
                 </div>
 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-500 black mb-4">Taxa de Crescimento dos Custos (%)</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    value={inputs.taxaCrescimentoCustos * 100}
-                    onChange={(e) => handleInputChange('taxaCrescimentoCustos', e.target.value / 100)}
-                    min="0"
-                    max="15"
-                    step="0.1"
+                  <NumericInput
+                    value={inputs.taxaCrescimentoCustos}
+                    percent
+                    onValue={(v) => handleInputChange('taxaCrescimentoCustos', v)}
+                    min={0}
+                    max={15}
+                    step={0.1}
                   />
                   <small className="h-12 fw-400 dark-gray mt-4">Inflação específica dos custos educacionais</small>
                 </div>
 
                 <div className="input-group">
                   <label className="h-14 fw-500 black mb-4">Subsídio/Bolsa Estatal Anual (€)</label>
-                  <input
-                    type="number"
-                    className="form-control"
+                  <NumericInput
                     value={inputs.subsidioEstatal}
-                    onChange={(e) => handleInputChange('subsidioEstatal', e.target.value)}
-                    min="0"
-                    step="50"
+                    onValue={(v) => handleInputChange('subsidioEstatal', v)}
+                    min={0}
+                    step={50}
                   />
-                  <small className="h-12 fw-400 dark-gray mt-4">Bolsa de estudo ou apoio social esperado</small>
+                  <small className="h-12 fw-400 dark-gray mt-4">Bolsa de estudo ou apoios sociais esperados</small>
                 </div>
               </div>
 
@@ -412,52 +408,46 @@ export default function EducationSavingsSimulator() {
                 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-500 black mb-4">Poupanças Iniciais (€)</label>
-                  <input
-                    type="number"
-                    className="form-control"
+                  <NumericInput
                     value={inputs.poupancasIniciais}
-                    onChange={(e) => handleInputChange('poupancasIniciais', e.target.value)}
-                    min="0"
-                    step="100"
+                    onValue={(v) => handleInputChange('poupancasIniciais', v)}
+                    min={0}
+                    step={100}
                   />
                 </div>
 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-500 black mb-4">Contribuições Mensais (€)</label>
-                  <input
-                    type="number"
-                    className="form-control"
+                  <NumericInput
                     value={inputs.contribuicoesMensais}
-                    onChange={(e) => handleInputChange('contribuicoesMensais', e.target.value)}
-                    min="0"
-                    step="10"
+                    onValue={(v) => handleInputChange('contribuicoesMensais', v)}
+                    min={0}
+                    step={10}
                   />
                 </div>
 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-500 black mb-4">Taxa de Retorno Anual (%)</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    value={inputs.taxaRetornoAnual * 100}
-                    onChange={(e) => handleInputChange('taxaRetornoAnual', e.target.value / 100)}
-                    min="0"
-                    max="12"
-                    step="0.1"
+                  <NumericInput
+                    value={inputs.taxaRetornoAnual}
+                    percent
+                    onValue={(v) => handleInputChange('taxaRetornoAnual', v)}
+                    min={0}
+                    max={12}
+                    step={0.1}
                   />
                   <small className="h-12 fw-400 dark-gray mt-4">Certificados, PPR, fundos de investimento</small>
                 </div>
 
                 <div className="input-group">
                   <label className="h-14 fw-500 black mb-4">Taxa de Inflação Geral (%)</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    value={inputs.taxaInflacaoAnual * 100}
-                    onChange={(e) => handleInputChange('taxaInflacaoAnual', e.target.value / 100)}
-                    min="0"
-                    max="10"
-                    step="0.1"
+                  <NumericInput
+                    value={inputs.taxaInflacaoAnual}
+                    percent
+                    onValue={(v) => handleInputChange('taxaInflacaoAnual', v)}
+                    min={0}
+                    max={10}
+                    step={0.1}
                   />
                 </div>
               </div>
@@ -694,7 +684,7 @@ export default function EducationSavingsSimulator() {
                         • PPR Educação com benefícios fiscais<br/>
                         • Certificados de Aforro para capital garantido<br/>
                         • Seguros de educação com cobertura adicional<br/>
-                        • Bolsas de mérito e apoio social disponíveis
+                        • Bolsas de mérito e apoios sociais disponíveis
                       </div>
                     </div>
                   </div>

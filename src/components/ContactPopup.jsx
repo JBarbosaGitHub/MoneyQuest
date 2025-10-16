@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import emailjs from '@emailjs/browser'
 
 export default function ContactPopup({ open, onClose }){
   const [formState, setFormState] = useState({ name: '', email: '', phone: '', company_name: '', message_project: '' })
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState(null)
   const [faqOpen, setFaqOpen] = useState(null)
 
   // Prevent text from disappearing by always showing value
@@ -10,16 +13,44 @@ export default function ContactPopup({ open, onClose }){
     setFormState(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     // basic required fields
     if (!formState.name || !formState.email) return
-    setSubmitted(true)
-    setTimeout(() => {
-      setSubmitted(false)
-      onClose()
-      setFormState({ name: '', email: '', phone: '', company_name: '', message_project: '' })
-    }, 1500)
+    
+    setSending(true)
+    setError(null)
+
+    try {
+      // Replace these with your EmailJS credentials from the dashboard
+      const serviceID = 'service_fnddf33'  // Your Service ID from the screenshot
+      const templateID = 'template_jlw285l'  // Get this from your email template page
+      const publicKey = 'AEyQk9R6TTOCPPnC6'    // Get this from Account > General
+
+      // These variable names MUST match your EmailJS template exactly
+      const templateParams = {
+        from_name: formState.name,          // matches {{from_name}} in template
+        from_email: formState.email,        // matches {{from_email}} in template  
+        phone: formState.phone,             // matches {{phone}} in template
+        company_name: formState.company_name, // matches {{company_name}} in template
+        message_project: formState.message_project // matches {{message_project}} in template
+      }
+
+      await emailjs.send(serviceID, templateID, templateParams, publicKey)
+      
+      setSubmitted(true)
+      setSending(false)
+      
+      setTimeout(() => {
+        setSubmitted(false)
+        onClose()
+        setFormState({ name: '', email: '', phone: '', company_name: '', message_project: '' })
+      }, 2500)
+    } catch (err) {
+      console.error('Email send error:', err)
+      setError('Failed to send message. Please try again.')
+      setSending(false)
+    }
   }
 
   useEffect(() => {
@@ -73,28 +104,35 @@ export default function ContactPopup({ open, onClose }){
                 </div>
               ) : (
                 <div className="form-content-wrap fade-in">
+                  {error && (
+                    <div className="alert alert-danger mb-16" style={{color: '#d63384', background: '#f8d7da', padding: '12px', borderRadius: '8px'}}>
+                      {error}
+                    </div>
+                  )}
                   <form action="/" className="form-group contact-form mb-48" id="contact-form" method="post" onSubmit={handleSubmit}>
                     <div className="row">
                       <div className="col-md-6 mb-32">
-                        <input type="text" className="form-control" name="name" required placeholder="Your Name" value={formState.name} onChange={handleChange} />
+                        <input type="text" className="form-control" name="name" required placeholder="Your Name" value={formState.name} onChange={handleChange} disabled={sending} />
                       </div>
                       <div className="col-md-6 mb-32">
-                        <input type="email" className="form-control" name="email" required placeholder="Your Email" value={formState.email} onChange={handleChange} />
+                        <input type="email" className="form-control" name="email" required placeholder="Your Email" value={formState.email} onChange={handleChange} disabled={sending} />
                       </div>
                       <div className="col-md-6 mb-32">
-                        <input type="tel" className="form-control" name="phone" placeholder="Phone Number" value={formState.phone} onChange={handleChange} />
+                        <input type="tel" className="form-control" name="phone" placeholder="Phone Number" value={formState.phone} onChange={handleChange} disabled={sending} />
                       </div>
                       <div className="col-md-6 mb-32">
-                        <input type="text" className="form-control" name="company_name" placeholder="Business Name" value={formState.company_name} onChange={handleChange} />
+                        <input type="text" className="form-control" name="company_name" placeholder="Business Name" value={formState.company_name} onChange={handleChange} disabled={sending} />
                       </div>
                       <input type="hidden" name="formType" id="formType" value="enquire" />
                     </div>
                     <div className="row project-fields">
                       <div className="col-12 mb-32">
-                        <textarea name="message_project" className="form-control" placeholder="Project Description" value={formState.message_project} onChange={handleChange}></textarea>
+                        <textarea name="message_project" className="form-control" placeholder="Project Description" value={formState.message_project} onChange={handleChange} disabled={sending}></textarea>
                       </div>
                     </div>
-                    <button type="submit" className="cus-btn-2 w-100">SEND MESSAGE &nbsp;&nbsp;<i className="fal fa-chevron-right"></i></button>
+                    <button type="submit" className="cus-btn-2 w-100" disabled={sending}>
+                      {sending ? 'SENDING...' : 'SEND MESSAGE'} &nbsp;&nbsp;<i className="fal fa-chevron-right"></i>
+                    </button>
                     <div id="message" className="alert-msg"></div>
                   </form>
                   {/* FAQ Section - styled as cards with icons */}

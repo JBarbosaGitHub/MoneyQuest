@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react'
+import NumericInput from '../common/NumericInput'
 
 // Calculate Modified Duration (simplified Macaulay duration approximation)
 function calculateModifiedDuration(principal, couponRate, maturity, ytm, frequency) {
@@ -30,6 +31,14 @@ export default function BondInvestmentSimulator() {
   })
 
   const [errors, setErrors] = useState({})
+
+  // Function to format percentage values without unnecessary decimal zeros
+  const formatPercentage = (value) => {
+    return Number(value).toLocaleString('pt-PT', {
+      minimumFractionDigits: 0, 
+      maximumFractionDigits: 2
+    });
+  }
 
   const handleInputChange = (field, value) => {
     const numValue = parseFloat(value) || 0
@@ -245,40 +254,35 @@ export default function BondInvestmentSimulator() {
                 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-500 black mb-4">Valor Nominal / Montante Investido (€)</label>
-                  <input
-                    type="number"
-                    className="form-control"
+                  <NumericInput
                     value={inputs.montanteInvestido}
-                    onChange={(e) => handleInputChange('montanteInvestido', e.target.value)}
-                    min="100"
-                    step="100"
+                    onValue={(v) => handleInputChange('montanteInvestido', v)}
+                    min={100}
+                    step={100}
                   />
                 </div>
 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-500 black mb-4">Taxa de Cupão Anual (%)</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    value={inputs.taxaCupaoAnual * 100}
-                    onChange={(e) => handleInputChange('taxaCupaoAnual', e.target.value / 100)}
-                    min="0"
-                    max="15"
-                    step="0.1"
+                  <NumericInput
+                    value={inputs.taxaCupaoAnual}
+                    percent
+                    onValue={(v) => handleInputChange('taxaCupaoAnual', v)}
+                    min={0}
+                    max={15}
+                    step={0.1}
                   />
                   <small className="h-12 fw-400 dark-gray mt-4">Taxa de juro da obrigação</small>
                 </div>
 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-500 black mb-4">Maturidade (Anos)</label>
-                  <input
-                    type="number"
-                    className="form-control"
+                  <NumericInput
                     value={inputs.maturidadeAnos}
-                    onChange={(e) => handleInputChange('maturidadeAnos', e.target.value)}
-                    min="1"
-                    max="50"
-                    step="1"
+                    onValue={(v) => handleInputChange('maturidadeAnos', v)}
+                    min={1}
+                    max={50}
+                    step={1}
                   />
                 </div>
 
@@ -301,14 +305,13 @@ export default function BondInvestmentSimulator() {
                 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-500 black mb-4">Taxa de Desconto de Mercado (%)</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    value={inputs.taxaDescontoMercado * 100}
-                    onChange={(e) => handleInputChange('taxaDescontoMercado', e.target.value / 100)}
-                    min="0"
-                    max="20"
-                    step="0.1"
+                  <NumericInput
+                    value={inputs.taxaDescontoMercado}
+                    percent
+                    onValue={(v) => handleInputChange('taxaDescontoMercado', v)}
+                    min={0}
+                    max={20}
+                    step={0.1}
                   />
                   <small className="h-12 fw-400 dark-gray mt-4">Taxa de juro de mercado para desconto</small>
                 </div>
@@ -336,7 +339,7 @@ export default function BondInvestmentSimulator() {
                   <input
                     type="number"
                     className="form-control"
-                    value={inputs.taxaInflacaoAnual * 100}
+                    value={Number((inputs.taxaInflacaoAnual * 100).toFixed(2))}
                     onChange={(e) => handleInputChange('taxaInflacaoAnual', e.target.value / 100)}
                     min="0"
                     max="10"
@@ -349,7 +352,7 @@ export default function BondInvestmentSimulator() {
                   <input
                     type="number"
                     className="form-control"
-                    value={inputs.taxaImpostoGanhos * 100}
+                    value={Number((inputs.taxaImpostoGanhos * 100).toFixed(2))}
                     onChange={(e) => handleInputChange('taxaImpostoGanhos', e.target.value / 100)}
                     min="0"
                     max="50"

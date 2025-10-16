@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react'
+import NumericInput from '../common/NumericInput'
 
 export default function InvestmentSimulator() {
   const [inputs, setInputs] = useState({
@@ -6,9 +7,9 @@ export default function InvestmentSimulator() {
     taxaRetornoAnualEsperada: 7,
     anos: 10,
     nivelRisco: 'medio',
-    taxaComissoesAnual: 0.01,
-    taxaImpostoGanhos: 0.28,
-    taxaInflacaoAnual: 0.024,
+    taxaComissoesAnual: parseFloat((0.01).toFixed(4)),
+    taxaImpostoGanhos: parseFloat((0.28).toFixed(4)),
+    taxaInflacaoAnual: parseFloat((0.024).toFixed(4)),
     contribuicoesAnuais: 1200,
     numSimulacoes: 500,
     fatorDiversificacao: 0.8
@@ -17,9 +18,34 @@ export default function InvestmentSimulator() {
   const [errors, setErrors] = useState({})
   const [isCalculating, setIsCalculating] = useState(false)
 
+  // Function to format percentage values without unnecessary decimal zeros
+  const formatPercentage = (value) => {
+    return Number(value).toLocaleString('pt-PT', {
+      minimumFractionDigits: 0, 
+      maximumFractionDigits: 2
+    });
+  }
+
   const handleInputChange = (field, value) => {
-    const numValue = field === 'nivelRisco' ? value : (parseFloat(value) || 0)
-    setInputs(prev => ({ ...prev, [field]: numValue }))
+    // Handle string values for dropdown
+    if (field === 'nivelRisco') {
+      setInputs(prev => ({ ...prev, [field]: value }))
+    } else {
+      // Parse number value
+      const numValue = parseFloat(value) || 0
+      
+      // Check if this is a percentage field that needs decimal limiting
+      const isPercentageField = field === 'taxaRetornoAnualEsperada' || 
+        field === 'taxaComissoesAnual' || 
+        field === 'taxaImpostoGanhos' || 
+        field === 'taxaInflacaoAnual'
+      
+      // Limit decimal places for percentage fields
+      const finalValue = isPercentageField ? 
+        parseFloat(numValue.toFixed(4)) : numValue
+      
+      setInputs(prev => ({ ...prev, [field]: finalValue }))
+    }
     
     // Clear error for this field
     if (errors[field]) {
@@ -206,40 +232,34 @@ export default function InvestmentSimulator() {
 
               <div className="input-group mb-24">
                 <label className="h-16 fw-500 black mb-8">Valor Inicial (€)</label>
-                <input
-                  type="number"
-                  className="form-control"
+                <NumericInput
                   value={inputs.valorInicial}
-                  onChange={(e) => handleInputChange('valorInicial', e.target.value)}
-                  min="0"
-                  step="100"
+                  onValue={(v) => handleInputChange('valorInicial', v)}
+                  min={0}
+                  step={100}
                 />
               </div>
 
               <div className="input-group mb-24">
                 <label className="h-16 fw-500 black mb-8">Taxa de Retorno Anual Esperada (%)</label>
-                <input
-                  type="number"
-                  className="form-control"
+                <NumericInput
                   value={inputs.taxaRetornoAnualEsperada}
-                  onChange={(e) => handleInputChange('taxaRetornoAnualEsperada', e.target.value)}
-                  min="0"
-                  max="30"
-                  step="0.1"
+                  onValue={(v) => handleInputChange('taxaRetornoAnualEsperada', v)}
+                  min={0}
+                  max={30}
+                  step={0.1}
                 />
                 <small className="h-12 fw-400 dark-gray mt-4">Ações: ~7%, Obrigações: ~3%, Misto: ~5%</small>
               </div>
 
               <div className="input-group mb-24">
                 <label className="h-16 fw-500 black mb-8">Horizonte Temporal (Anos)</label>
-                <input
-                  type="number"
-                  className="form-control"
+                <NumericInput
                   value={inputs.anos}
-                  onChange={(e) => handleInputChange('anos', e.target.value)}
-                  min="1"
-                  max="50"
-                  step="1"
+                  onValue={(v) => handleInputChange('anos', v)}
+                  min={1}
+                  max={50}
+                  step={1}
                 />
               </div>
 
@@ -259,13 +279,11 @@ export default function InvestmentSimulator() {
 
               <div className="input-group mb-24">
                 <label className="h-16 fw-500 black mb-8">Contribuições Anuais (€)</label>
-                <input
-                  type="number"
-                  className="form-control"
+                <NumericInput
                   value={inputs.contribuicoesAnuais}
-                  onChange={(e) => handleInputChange('contribuicoesAnuais', e.target.value)}
-                  min="0"
-                  step="100"
+                  onValue={(v) => handleInputChange('contribuicoesAnuais', v)}
+                  min={0}
+                  step={100}
                 />
               </div>
 
@@ -293,53 +311,48 @@ export default function InvestmentSimulator() {
                 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-400 black mb-4">Taxa de Comissões Anual (%)</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    value={inputs.taxaComissoesAnual * 100}
-                    onChange={(e) => handleInputChange('taxaComissoesAnual', e.target.value / 100)}
-                    min="0"
-                    max="5"
-                    step="0.01"
+                  <NumericInput
+                    value={inputs.taxaComissoesAnual}
+                    percent
+                    onValue={(v) => handleInputChange('taxaComissoesAnual', v)}
+                    min={0}
+                    max={5}
+                    step={0.01}
                   />
                 </div>
 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-400 black mb-4">Taxa de Imposto sobre Ganhos (%)</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    value={inputs.taxaImpostoGanhos * 100}
-                    onChange={(e) => handleInputChange('taxaImpostoGanhos', e.target.value / 100)}
-                    min="0"
-                    max="50"
-                    step="0.1"
+                  <NumericInput
+                    value={inputs.taxaImpostoGanhos}
+                    percent
+                    onValue={(v) => handleInputChange('taxaImpostoGanhos', v)}
+                    min={0}
+                    max={50}
+                    step={0.01}
                   />
                 </div>
 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-400 black mb-4">Taxa de Inflação Anual (%)</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    value={inputs.taxaInflacaoAnual * 100}
-                    onChange={(e) => handleInputChange('taxaInflacaoAnual', e.target.value / 100)}
-                    min="0"
-                    max="10"
-                    step="0.1"
+                  <NumericInput
+                    value={inputs.taxaInflacaoAnual}
+                    percent
+                    onValue={(v) => handleInputChange('taxaInflacaoAnual', v)}
+                    min={0}
+                    max={10}
+                    step={0.01}
                   />
                 </div>
 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-400 black mb-4">Número de Simulações</label>
-                  <input
-                    type="number"
-                    className="form-control"
+                  <NumericInput
                     value={inputs.numSimulacoes}
-                    onChange={(e) => handleInputChange('numSimulacoes', e.target.value)}
-                    min="100"
-                    max="10000"
-                    step="100"
+                    onValue={(v) => handleInputChange('numSimulacoes', v)}
+                    min={100}
+                    max={10000}
+                    step={100}
                   />
                 </div>
               </div>

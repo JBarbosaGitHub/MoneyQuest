@@ -5,7 +5,45 @@ import BusinessViabilityCalculator from './simulators/BusinessViabilityCalculato
 import RetirementPlanningSimulator from './simulators/RetirementPlanningSimulator'
 import BondInvestmentSimulator from './simulators/BondInvestmentSimulator'
 import EducationSavingsSimulator from './simulators/EducationSavingsSimulator'
+import FirstMillionSimulator from './simulators/FirstMillionSimulator'
+import LifeTimeCostSimulator from './simulators/LifeTimeCostSimulator'
 import SimulatorPopup from './SimulatorPopup'
+
+// Icon map for colorful themed icons per simulator
+const iconMap = {
+  budget: { emoji: '💰', bg: '#FDE68A', fg: '#1F2937' },
+  investment: { emoji: '📈', bg: '#BFDBFE', fg: '#1E3A8A' },
+  business: { emoji: '🏢', bg: '#FBCFE8', fg: '#831843' },
+  retirement: { emoji: '🌴', bg: '#A7F3D0', fg: '#065F46' },
+  bond: { emoji: '🧾', bg: '#C7D2FE', fg: '#312E81' },
+  education: { emoji: '🎓', bg: '#FECACA', fg: '#7F1D1D' },
+  lifetimecost: { emoji: '⏱️', bg: '#DDD6FE', fg: '#4C1D95' },
+  firstmillion: { emoji: '🥇', bg: '#FDE68A', fg: '#92400E' },
+}
+
+function IconBadge({ id, name }) {
+  const cfg = iconMap[id] || { emoji: '✨', bg: '#E5E7EB', fg: '#111827' }
+  return (
+    <div
+      aria-label={name}
+      title={name}
+      style={{
+        width: 96,
+        height: 96,
+        borderRadius: 16,
+        background: cfg.bg,
+        color: cfg.fg,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: 44,
+        boxShadow: 'inset 0 0 0 2px rgba(0,0,0,0.08)'
+      }}
+    >
+      <span role="img" aria-hidden>{cfg.emoji}</span>
+    </div>
+  )
+}
 
 const simulators = [
   {
@@ -55,6 +93,22 @@ const simulators = [
     image: '/assets/media/brand-logo/brand-img-6.png',
     component: <EducationSavingsSimulator />,
     description: 'Projete custos de educação e plano de poupança familiar.'
+  },
+  {
+    id: 'lifetimecost',
+    name: 'Custo em Tempo de Vida',
+    logo: '/assets/media/brand-logo/brand-logo-8.png',
+    image: '/assets/media/brand-logo/brand-img-8.png',
+    component: <LifeTimeCostSimulator />,
+    description: 'Veja quantas horas/dias precisa trabalhar para pagar itens do dia a dia.'
+  },
+  {
+    id: 'firstmillion',
+    name: 'Primeiro Milhão',
+    logo: '/assets/media/brand-logo/brand-logo-7.png',
+    image: '/assets/media/brand-logo/brand-img-7.png',
+    component: <FirstMillionSimulator />,
+    description: 'Descubra quanto investir por mês para alcançar o primeiro milhão.'
   }
 ]
 
@@ -89,18 +143,19 @@ export default function CaseStudies() {
           background: '#f8f9fa',
           borderRadius: '24px',
           boxShadow: '0 4px 24px rgba(0,0,0,0.07)',
-          padding: '32px 40px 40px 40px',
+          padding: '32px 40px 24px 40px',
           maxWidth: '1400px',
           width: '100%',
-          margin: '0 auto',
+          margin: '0 auto 8px',
           border: '2px solid #222',
         }}>
           <div className="brand-area" style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: '40px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gridTemplateRows: 'none',
+            gap: '32px',
             justifyItems: 'center',
-            alignItems: 'center',
+            alignItems: 'stretch',
             padding: '16px',
             margin: '0 8px',
           }}>
@@ -114,16 +169,16 @@ export default function CaseStudies() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '16px',
-                  padding: '40px 24px',
+                  gap: '14px',
+                  padding: '28px 20px',
                   borderRadius: '20px',
                   background: '#f8f9fa',
                   boxShadow: 'none',
                   border: '2px solid #222',
                   cursor: 'pointer',
-                  minHeight: '260px',
+                  height: '320px',
                   width: '100%',
-                  maxWidth: '260px',
+                  maxWidth: '280px',
                   margin: '8px',
                   transition: 'all 0.3s ease',
                 }}
@@ -138,9 +193,24 @@ export default function CaseStudies() {
                   e.currentTarget.style.borderColor = '#222';
                 }}
               >
-                <span className="banner-text" style={{ textAlign: 'center', fontSize: '1.6rem', marginBottom: '8px', letterSpacing: '1px' }}>{sim.name}</span>
-                <img src={sim.image} alt={sim.name} style={{ width: 96, height: 96, borderRadius: '14px', objectFit: 'cover', margin: '8px 0' }} />
-                <p className="h-16 fw-400 dark-gray" style={{ textAlign: 'center', marginTop: '8px', fontSize: '1rem' }}>{sim.description}</p>
+                <span className="banner-text" style={{ textAlign: 'center', fontSize: '1.4rem', marginBottom: '4px', letterSpacing: '1px', lineHeight: 1.2 }}>{sim.name}</span>
+                <IconBadge id={sim.id} name={sim.name} />
+                <p
+                  className="h-16 fw-400 dark-gray"
+                  style={{
+                    textAlign: 'center',
+                    marginTop: '4px',
+                    fontSize: '0.98rem',
+                    lineHeight: 1.35,
+                    display: '-webkit-box',
+                    WebkitLineClamp: 3,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                    maxWidth: '220px'
+                  }}
+                >
+                  {sim.description}
+                </p>
               </button>
             ))}
           </div>

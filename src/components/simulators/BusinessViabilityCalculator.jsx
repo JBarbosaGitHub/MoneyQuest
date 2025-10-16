@@ -1,25 +1,51 @@
 import React, { useState, useMemo } from 'react'
+import NumericInput from '../common/NumericInput'
+import { calculateCITForSME, formatEUR, formatPercent } from '../../services/taxCalcPT'
 
 export default function BusinessViabilityCalculator() {
   const [inputs, setInputs] = useState({
     capitalInicial: 50000,
     receitaMensalInicial: 10000,
     custosFixosMensais: 4000,
-    percentagemCustosVariaveis: 0.30,
+    percentagemCustosVariaveis: parseFloat((0.30).toFixed(4)),
     despesasMarketingMensais: 1000,
-    taxaCrescimentoReceitaMensal: 0.05,
+    taxaCrescimentoReceitaMensal: parseFloat((0.05).toFixed(4)),
     emprestimo: 20000,
-    jurosEmprestimoAnual: 0.06,
-    taxaImpostoCorporativo: 0.21,
+    jurosEmprestimoAnual: parseFloat((0.06).toFixed(4)),
+    taxaImpostoCorporativo: parseFloat((0.21).toFixed(4)),
     mesesProjetados: 24,
-    fatorRiscoReceita: 0.10
+    fatorRiscoReceita: parseFloat((0.10).toFixed(4)),
+    taxaIRC: parseFloat((0.16).toFixed(4)),
+    usarRegraPME: true
   })
+
+  // NumericInput will manage display typing for all fields
 
   const [errors, setErrors] = useState({})
 
+  // Function to format percentage values without unnecessary decimal zeros
+  const formatPercentage = (value) => {
+    return Number(value).toLocaleString('pt-PT', {
+      minimumFractionDigits: 0, 
+      maximumFractionDigits: 2
+    });
+  }
+
   const handleInputChange = (field, value) => {
+    // Parse and limit decimal places for percentage fields
     const numValue = parseFloat(value) || 0
-    setInputs(prev => ({ ...prev, [field]: numValue }))
+    const isPercentageField = field.includes('percentagem') || 
+      field === 'taxaCrescimentoReceitaMensal' || 
+      field === 'jurosEmprestimoAnual' || 
+      field === 'taxaImpostoCorporativo' ||
+      field === 'taxaIRC' || 
+      field === 'fatorRiscoReceita'
+      
+    // Limit percentage fields to 2 decimal places
+    const finalValue = isPercentageField ? 
+      parseFloat(numValue.toFixed(4)) : numValue
+      
+    setInputs(prev => ({ ...prev, [field]: finalValue }))
     
     // Clear error for this field
     if (errors[field]) {
@@ -92,7 +118,17 @@ export default function BusinessViabilityCalculator() {
                                 despesasMarketingMensais + amortizacaoMensal + jurosMensal
       
       const lucroBrutoMensal = receitaMensal - totalCustosMensais
-      const impostoMensal = Math.max(0, lucroBrutoMensal * taxaImpostoCorporativo)
+      // CIT (IRC)
+      // If Regra PME is active: 16% on first €50k/year and 20% above, prorated monthly.
+      // Otherwise, use the flat IRC rate from inputs.taxaIRC.
+      let impostoMensal = 0
+      if (inputs.usarRegraPME) {
+        const monthlyTierLimit = 50000 / 12
+        const cit = calculateCITForSME(lucroBrutoMensal, { tierLimit: monthlyTierLimit })
+        impostoMensal = Math.max(0, cit.tax)
+      } else {
+        impostoMensal = Math.max(0, lucroBrutoMensal * (inputs.taxaIRC || 0))
+      }
       const lucroLiquidoMensal = lucroBrutoMensal - impostoMensal
       
       saldoAtual += lucroLiquidoMensal
@@ -149,7 +185,7 @@ export default function BusinessViabilityCalculator() {
 
     // Additional metrics
     const roiAnual = capitalInicial > 0 ? ((totalLucroAcumulado / (mesesProjetados / 12)) / capitalInicial) * 100 : 0
-    const margemLiquidaMedia = receitaTotal > 0 ? (totalLucroAcumulado / receitaTotal) * 100 : 0
+  const margemLiquidaMedia = receitaTotal > 0 ? (totalLucroAcumulado / receitaTotal) * 100 : 0
     const custoTotalMedio = fluxosCaixaMensais.reduce((sum, d) => 
       sum + d.custosFixos + d.custosVariaveis + d.marketing + d.amortizacao + d.juros, 0) / mesesProjetados
 
@@ -226,77 +262,67 @@ export default function BusinessViabilityCalculator() {
 
               <div className="input-group mb-24">
                 <label className="h-16 fw-500 black mb-8">Capital Inicial (€)</label>
-                <input
-                  type="number"
-                  className="form-control"
+                <NumericInput
                   value={inputs.capitalInicial}
-                  onChange={(e) => handleInputChange('capitalInicial', e.target.value)}
-                  min="0"
-                  step="1000"
+                  onValue={(v) => handleInputChange('capitalInicial', v)}
+                  min={0}
+                  step={1000}
                 />
               </div>
 
               <div className="input-group mb-24">
                 <label className="h-16 fw-500 black mb-8">Receita Mensal Inicial (€)</label>
-                <input
-                  type="number"
-                  className="form-control"
+                <NumericInput
                   value={inputs.receitaMensalInicial}
-                  onChange={(e) => handleInputChange('receitaMensalInicial', e.target.value)}
-                  min="0"
-                  step="100"
+                  onValue={(v) => handleInputChange('receitaMensalInicial', v)}
+                  min={0}
+                  step={100}
                 />
               </div>
 
               <div className="input-group mb-24">
                 <label className="h-16 fw-500 black mb-8">Custos Fixos Mensais (€)</label>
-                <input
-                  type="number"
-                  className="form-control"
+                <NumericInput
                   value={inputs.custosFixosMensais}
-                  onChange={(e) => handleInputChange('custosFixosMensais', e.target.value)}
-                  min="0"
-                  step="100"
+                  onValue={(v) => handleInputChange('custosFixosMensais', v)}
+                  min={0}
+                  step={100}
                 />
                 <small className="h-12 fw-400 dark-gray mt-4">Renda, salários, seguros, etc.</small>
               </div>
 
               <div className="input-group mb-24">
                 <label className="h-16 fw-500 black mb-8">Custos Variáveis (% da Receita)</label>
-                <input
-                  type="number"
-                  className="form-control"
-                  value={inputs.percentagemCustosVariaveis * 100}
-                  onChange={(e) => handleInputChange('percentagemCustosVariaveis', e.target.value / 100)}
-                  min="0"
-                  max="90"
-                  step="1"
+                <NumericInput
+                  value={inputs.percentagemCustosVariaveis}
+                  percent
+                  onValue={(v) => handleInputChange('percentagemCustosVariaveis', v)}
+                  min={0}
+                  max={90}
+                  step={0.01}
                 />
                 <small className="h-12 fw-400 dark-gray mt-4">Materiais, comissões, etc. (ex: 30%)</small>
               </div>
 
               <div className="input-group mb-24">
                 <label className="h-16 fw-500 black mb-8">Despesas de Marketing Mensais (€)</label>
-                <input
-                  type="number"
-                  className="form-control"
+                <NumericInput
                   value={inputs.despesasMarketingMensais}
-                  onChange={(e) => handleInputChange('despesasMarketingMensais', e.target.value)}
-                  min="0"
-                  step="50"
+                  onValue={(v) => handleInputChange('despesasMarketingMensais', v)}
+                  min={0}
+                  step={50}
                 />
               </div>
 
               <div className="input-group mb-24">
                 <label className="h-16 fw-500 black mb-8">Taxa de Crescimento Mensal (%)</label>
-                <input
-                  type="number"
-                  className="form-control"
-                  value={inputs.taxaCrescimentoReceitaMensal * 100}
-                  onChange={(e) => handleInputChange('taxaCrescimentoReceitaMensal', e.target.value / 100)}
-                  min="-10"
-                  max="20"
-                  step="0.1"
+                <NumericInput
+                  value={inputs.taxaCrescimentoReceitaMensal}
+                  percent
+                  onValue={(v) => handleInputChange('taxaCrescimentoReceitaMensal', v)}
+                  min={-10}
+                  max={20}
+                  step={0.01}
                 />
               </div>
 
@@ -305,26 +331,23 @@ export default function BusinessViabilityCalculator() {
                 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-400 black mb-4">Montante do Empréstimo (€)</label>
-                  <input
-                    type="number"
-                    className="form-control"
+                  <NumericInput
                     value={inputs.emprestimo}
-                    onChange={(e) => handleInputChange('emprestimo', e.target.value)}
-                    min="0"
-                    step="1000"
+                    onValue={(v) => handleInputChange('emprestimo', v)}
+                    min={0}
+                    step={1000}
                   />
                 </div>
 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-400 black mb-4">Taxa de Juros Anual (%)</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    value={inputs.jurosEmprestimoAnual * 100}
-                    onChange={(e) => handleInputChange('jurosEmprestimoAnual', e.target.value / 100)}
-                    min="0"
-                    max="15"
-                    step="0.1"
+                  <NumericInput
+                    value={inputs.jurosEmprestimoAnual}
+                    percent
+                    onValue={(v) => handleInputChange('jurosEmprestimoAnual', v)}
+                    min={0}
+                    max={15}
+                    step={0.01}
                   />
                 </div>
               </div>
@@ -334,40 +357,51 @@ export default function BusinessViabilityCalculator() {
                 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-400 black mb-4">Período de Projeção (Meses)</label>
-                  <input
-                    type="number"
-                    className="form-control"
+                  <NumericInput
                     value={inputs.mesesProjetados}
-                    onChange={(e) => handleInputChange('mesesProjetados', e.target.value)}
-                    min="6"
-                    max="60"
-                    step="1"
+                    onValue={(v) => handleInputChange('mesesProjetados', v)}
+                    min={6}
+                    max={60}
+                    step={1}
                   />
                 </div>
 
                 <div className="input-group mb-16">
-                  <label className="h-14 fw-400 black mb-4">Taxa de Imposto Corporativo (%)</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    value={inputs.taxaImpostoCorporativo * 100}
-                    onChange={(e) => handleInputChange('taxaImpostoCorporativo', e.target.value / 100)}
-                    min="0"
-                    max="40"
-                    step="0.1"
+                  <label className="h-14 fw-400 black mb-4">Aplicar Regra PME (IRC)</label>
+                  <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
+                    <input
+                      id="usarRegraPME"
+                      type="checkbox"
+                      className="form-check-input"
+                      checked={inputs.usarRegraPME}
+                      onChange={(e) => setInputs(prev => ({ ...prev, usarRegraPME: e.target.checked }))}
+                    />
+                    <label htmlFor="usarRegraPME" className="h-14 fw-400 black">16% até €50.000/ano e 20% acima</label>
+                  </div>
+                </div>
+
+                <div className="input-group mb-16">
+                  <label className="h-14 fw-400 black mb-4">Taxa de IRC (%)</label>
+                  <NumericInput
+                    value={inputs.taxaIRC}
+                    percent
+                    onValue={(v) => handleInputChange('taxaIRC', v)}
+                    disabled={inputs.usarRegraPME}
+                    min={0}
+                    max={40}
+                    step={0.01}
                   />
                 </div>
 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-400 black mb-4">Fator de Risco de Receita (%)</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    value={inputs.fatorRiscoReceita * 100}
-                    onChange={(e) => handleInputChange('fatorRiscoReceita', e.target.value / 100)}
-                    min="0"
-                    max="50"
-                    step="1"
+                  <NumericInput
+                    value={inputs.fatorRiscoReceita}
+                    percent
+                    onValue={(v) => handleInputChange('fatorRiscoReceita', v)}
+                    min={0}
+                    max={50}
+                    step={0.01}
                   />
                   <small className="h-12 fw-400 dark-gray mt-4">Variação esperada na receita</small>
                 </div>
@@ -447,6 +481,14 @@ export default function BusinessViabilityCalculator() {
                   <div className="summary-item mb-12" style={{display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #e9ecef'}}>
                     <span className="h-14 fw-500 black">Margem Líquida Média</span>
                     <span className="h-14 fw-700 black">{calculationResults.margemLiquidaMedia}%</span>
+                  </div>
+                  <div className="summary-item mb-12" style={{display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #e9ecef'}}>
+                    <span className="h-14 fw-500 black">Imposto (IRC) - Regra PME</span>
+                    <span className="h-14 fw-700 black">
+                      {formatEUR(
+                        calculationResults.fluxosCaixa.reduce((sum, d) => sum + (d.imposto || 0), 0)
+                      )}
+                    </span>
                   </div>
                   
                   <div className="summary-item mb-12" style={{display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #e9ecef'}}>

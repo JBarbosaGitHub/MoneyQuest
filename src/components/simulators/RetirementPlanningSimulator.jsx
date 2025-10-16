@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react'
+import NumericInput from '../common/NumericInput'
 
 export default function RetirementPlanningSimulator() {
   const [inputs, setInputs] = useState({
@@ -17,6 +18,14 @@ export default function RetirementPlanningSimulator() {
   })
 
   const [errors, setErrors] = useState({})
+
+  // Function to format percentage values without unnecessary decimal zeros
+  const formatPercentage = (value) => {
+    return Number(value).toLocaleString('pt-PT', {
+      minimumFractionDigits: 0, 
+      maximumFractionDigits: 2
+    });
+  }
 
   const handleInputChange = (field, value) => {
     const numValue = parseFloat(value) || 0
@@ -250,28 +259,24 @@ export default function RetirementPlanningSimulator() {
                   <div className="col-6">
                     <div className="input-group mb-16">
                       <label className="h-14 fw-500 black mb-4">Idade Atual</label>
-                      <input
-                        type="number"
-                        className="form-control"
+                      <NumericInput
                         value={inputs.idadeAtual}
-                        onChange={(e) => handleInputChange('idadeAtual', e.target.value)}
-                        min="18"
-                        max="80"
-                        step="1"
+                        onValue={(v) => handleInputChange('idadeAtual', v)}
+                        min={18}
+                        max={80}
+                        step={1}
                       />
                     </div>
                   </div>
                   <div className="col-6">
                     <div className="input-group mb-16">
                       <label className="h-14 fw-500 black mb-4">Idade de Reforma</label>
-                      <input
-                        type="number"
-                        className="form-control"
+                      <NumericInput
                         value={inputs.idadeReforma}
-                        onChange={(e) => handleInputChange('idadeReforma', e.target.value)}
-                        min="50"
-                        max="90"
-                        step="1"
+                        onValue={(v) => handleInputChange('idadeReforma', v)}
+                        min={50}
+                        max={90}
+                        step={1}
                       />
                     </div>
                   </div>
@@ -288,26 +293,23 @@ export default function RetirementPlanningSimulator() {
 
               <div className="input-group mb-24">
                 <label className="h-16 fw-500 black mb-8">Rendimento Mensal Atual (€)</label>
-                <input
-                  type="number"
-                  className="form-control"
+                <NumericInput
                   value={inputs.rendimentoMensalAtual}
-                  onChange={(e) => handleInputChange('rendimentoMensalAtual', e.target.value)}
-                  min="0"
-                  step="50"
+                  onValue={(v) => handleInputChange('rendimentoMensalAtual', v)}
+                  min={0}
+                  step={50}
                 />
               </div>
 
               <div className="input-group mb-24">
                 <label className="h-16 fw-500 black mb-8">Taxa de Crescimento Salarial Anual (%)</label>
-                <input
-                  type="number"
-                  className="form-control"
-                  value={inputs.taxaCrescimentoSalarial * 100}
-                  onChange={(e) => handleInputChange('taxaCrescimentoSalarial', e.target.value / 100)}
-                  min="0"
-                  max="10"
-                  step="0.1"
+                <NumericInput
+                  value={inputs.taxaCrescimentoSalarial}
+                  percent
+                  onValue={(v) => handleInputChange('taxaCrescimentoSalarial', v)}
+                  min={0}
+                  max={10}
+                  step={0.1}
                 />
                 <small className="h-12 fw-400 dark-gray mt-4">Crescimento médio esperado do salário</small>
               </div>
@@ -317,39 +319,34 @@ export default function RetirementPlanningSimulator() {
                 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-500 black mb-4">Poupanças Atuais (€)</label>
-                  <input
-                    type="number"
-                    className="form-control"
+                  <NumericInput
                     value={inputs.poupancasAtuais}
-                    onChange={(e) => handleInputChange('poupancasAtuais', e.target.value)}
-                    min="0"
-                    step="1000"
+                    onValue={(v) => handleInputChange('poupancasAtuais', v)}
+                    min={0}
+                    step={1000}
                   />
                 </div>
 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-500 black mb-4">Contribuições Mensais (€)</label>
-                  <input
-                    type="number"
-                    className="form-control"
+                  <NumericInput
                     value={inputs.contribuicoesMensais}
-                    onChange={(e) => handleInputChange('contribuicoesMensais', e.target.value)}
-                    min="0"
-                    step="25"
+                    onValue={(v) => handleInputChange('contribuicoesMensais', v)}
+                    min={0}
+                    step={25}
                   />
                   <small className="h-12 fw-400 dark-gray mt-4">PPR, fundos de pensões, etc.</small>
                 </div>
 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-500 black mb-4">Taxa de Retorno Anual Esperada (%)</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    value={inputs.taxaRetornoAnual * 100}
-                    onChange={(e) => handleInputChange('taxaRetornoAnual', e.target.value / 100)}
-                    min="0"
-                    max="15"
-                    step="0.1"
+                  <NumericInput
+                    value={inputs.taxaRetornoAnual}
+                    percent
+                    onValue={(v) => handleInputChange('taxaRetornoAnual', v)}
+                    min={0}
+                    max={15}
+                    step={0.1}
                   />
                   <small className="h-12 fw-400 dark-gray mt-4">Conservador: 3-4%, Moderado: 5-7%, Agressivo: 8-10%</small>
                 </div>
@@ -360,27 +357,23 @@ export default function RetirementPlanningSimulator() {
                 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-500 black mb-4">Despesas Mensais na Reforma (€)</label>
-                  <input
-                    type="number"
-                    className="form-control"
+                  <NumericInput
                     value={inputs.despesasMensaisReforma}
-                    onChange={(e) => handleInputChange('despesasMensaisReforma', e.target.value)}
-                    min="0"
-                    step="50"
+                    onValue={(v) => handleInputChange('despesasMensaisReforma', v)}
+                    min={0}
+                    step={50}
                   />
                   <small className="h-12 fw-400 dark-gray mt-4">Estimativa do orçamento mensal necessário</small>
                 </div>
 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-500 black mb-4">Anos Pós-Reforma</label>
-                  <input
-                    type="number"
-                    className="form-control"
+                  <NumericInput
                     value={inputs.anosPosReforma}
-                    onChange={(e) => handleInputChange('anosPosReforma', e.target.value)}
-                    min="10"
-                    max="40"
-                    step="1"
+                    onValue={(v) => handleInputChange('anosPosReforma', v)}
+                    min={10}
+                    max={40}
+                    step={1}
                   />
                   <small className="h-12 fw-400 dark-gray mt-4">Esperança de vida pós-reforma</small>
                 </div>
@@ -391,40 +384,36 @@ export default function RetirementPlanningSimulator() {
                 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-400 black mb-4">Taxa de Inflação Anual (%)</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    value={inputs.taxaInflacaoAnual * 100}
-                    onChange={(e) => handleInputChange('taxaInflacaoAnual', e.target.value / 100)}
-                    min="0"
-                    max="10"
-                    step="0.1"
+                  <NumericInput
+                    value={inputs.taxaInflacaoAnual}
+                    percent
+                    onValue={(v) => handleInputChange('taxaInflacaoAnual', v)}
+                    min={0}
+                    max={10}
+                    step={0.1}
                   />
                 </div>
 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-400 black mb-4">Taxa de Imposto sobre Ganhos (%)</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    value={inputs.taxaImpostoGanhos * 100}
-                    onChange={(e) => handleInputChange('taxaImpostoGanhos', e.target.value / 100)}
-                    min="0"
-                    max="50"
-                    step="0.1"
+                  <NumericInput
+                    value={inputs.taxaImpostoGanhos}
+                    percent
+                    onValue={(v) => handleInputChange('taxaImpostoGanhos', v)}
+                    min={0}
+                    max={50}
+                    step={0.1}
                   />
                 </div>
 
                 <div className="input-group mb-16">
                   <label className="h-14 fw-400 black mb-4">Número de Simulações</label>
-                  <input
-                    type="number"
-                    className="form-control"
+                  <NumericInput
                     value={inputs.numSimulacoes}
-                    onChange={(e) => handleInputChange('numSimulacoes', e.target.value)}
-                    min="50"
-                    max="1000"
-                    step="50"
+                    onValue={(v) => handleInputChange('numSimulacoes', v)}
+                    min={50}
+                    max={1000}
+                    step={50}
                   />
                 </div>
               </div>
