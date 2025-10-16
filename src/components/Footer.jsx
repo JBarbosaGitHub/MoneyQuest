@@ -27,7 +27,7 @@ export default function Footer({ onOpenContact }) {
                 <li className="h-16 fw-400 body-text white mb-8"><a href="#">ABOUT US</a></li>
                 <li className="h-16 fw-400 body-text white mb-8"><a href="#">GALLERY</a></li>
                 <li className="h-16 fw-400 body-text white mb-8"><a href="#">HELP CENTER</a></li>
-                <li className="h-16 fw-400 body-text white mb-8"><a href="#" className="contact-btn">CONTACT US</a></li>
+                <li className="h-16 fw-400 body-text white mb-8"><a href="#" className="contact-btn">CONTACTE-NOS</a></li>
               </ul>
               <ul className="footer_menu list-unstyled mt-32">
                 <li className="h-28 fw-700 white mb-16">OPENING HOURS</li>

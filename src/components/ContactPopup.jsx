@@ -71,24 +71,24 @@ export default function ContactPopup({ open, onClose }){
         <div className="row">
           <div className="col-xl-5 col-lg-4 fade-in">
             <div className="company-contact-detail">
-              <button className="close-btn begin-popupClose" type="button" onClick={onClose}>GO BACK</button>
-              <h2 className="h-90 fw-800 black mb-8">GET IN <span>TOUCH</span></h2>
-              <h5 className="h-21 font-sec fw-700 dark-black mb-48">We are here to listen to your questions or ideas!</h5>
+              <button className="close-btn begin-popupClose" type="button" onClick={onClose}>VOLTAR</button>
+              <h2 className="h-90 fw-800 black mb-8">FALE <span>CONNOSCO</span></h2>
+              <h5 className="h-21 font-sec fw-700 dark-black mb-48">Estamos aqui para ouvir as suas questões ou ideias!</h5>
               <span className="vert-line"></span>
               <hr className="bg-dark-black mb-48" />
               <ul className="footer_menu list-unstyled">
                 <li>
                   <ul className="list-unstyled mb-48">
-                    <li className="h-28 fw-700 dark-black mb-16">OPENING HOURS</li>
-                    <li className="h-16 fw-400 body-text dark-black timing"><span>MON-FRI</span><span>09AM-5PM</span></li>
-                    <li className="h-16 fw-400 body-text dark-black timing"><span>SAT-SUN</span><span>11AM-6PM</span></li>
+                    <li className="h-28 fw-700 dark-black mb-16">HORÁRIO</li>
+                    <li className="h-16 fw-400 body-text dark-black timing"><span>SEG-SEX</span><span>09H-17H</span></li>
+                    <li className="h-16 fw-400 body-text dark-black timing"><span>SÁB-DOM</span><span>11H-18H</span></li>
                   </ul>
                   <hr className="bg-dark-black mb-48" />
                 </li>
                 <li>
                   <ul className="list-unstyled">
-                    <li className="h-28 fw-700 dark-black mb-16">CONTACT DETAILS</li>
-                    <li className="h-16 fw-400 body-text dark-black mb-16"><a href="tel:123456789">P. +123 123 4567</a></li>
+                    <li className="h-28 fw-700 dark-black mb-16">CONTACTOS</li>
+                    <li className="h-16 fw-400 body-text dark-black mb-16"><a href="tel:123456789">T. +123 123 4567</a></li>
                     <li className="h-16 fw-400 body-text dark-black"><a href="mailto:info@example.com">E. info@example.com</a></li>
                   </ul>
                 </li>
@@ -99,8 +99,8 @@ export default function ContactPopup({ open, onClose }){
             <div className="parent">
               {submitted ? (
                 <div className="thanksMessage fade-in">
-                  <h2 className="h-47 fw-700 white mb-16 mt-5">Thanks For Reaching Out</h2>
-                  <p className="text-14 fw-500 white-sec mb-48">Our team are reviewing your enquiry, and will be in touch shortly.</p>
+                  <h2 className="h-47 fw-700 white mb-16 mt-5">Obrigado pelo seu contacto!</h2>
+                  <p className="text-14 fw-500 white-sec mb-48">A nossa equipa está a analisar o seu pedido e irá responder brevemente.</p>
                 </div>
               ) : (
                 <div className="form-content-wrap fade-in">
@@ -112,41 +112,41 @@ export default function ContactPopup({ open, onClose }){
                   <form action="/" className="form-group contact-form mb-48" id="contact-form" method="post" onSubmit={handleSubmit}>
                     <div className="row">
                       <div className="col-md-6 mb-32">
-                        <input type="text" className="form-control" name="name" required placeholder="Your Name" value={formState.name} onChange={handleChange} disabled={sending} />
+                        <input type="text" className="form-control" name="name" required placeholder="Nome" value={formState.name} onChange={handleChange} disabled={sending} />
                       </div>
                       <div className="col-md-6 mb-32">
-                        <input type="email" className="form-control" name="email" required placeholder="Your Email" value={formState.email} onChange={handleChange} disabled={sending} />
+                        <input type="email" className="form-control" name="email" required placeholder="Email" value={formState.email} onChange={handleChange} disabled={sending} />
                       </div>
                       <div className="col-md-6 mb-32">
-                        <input type="tel" className="form-control" name="phone" placeholder="Phone Number" value={formState.phone} onChange={handleChange} disabled={sending} />
+                        <input type="tel" className="form-control" name="phone" placeholder="Telefone" value={formState.phone} onChange={handleChange} disabled={sending} />
                       </div>
                       <div className="col-md-6 mb-32">
-                        <input type="text" className="form-control" name="company_name" placeholder="Business Name" value={formState.company_name} onChange={handleChange} disabled={sending} />
+                        <input type="text" className="form-control" name="company_name" placeholder="Empresa" value={formState.company_name} onChange={handleChange} disabled={sending} />
                       </div>
                       <input type="hidden" name="formType" id="formType" value="enquire" />
                     </div>
                     <div className="row project-fields">
                       <div className="col-12 mb-32">
-                        <textarea name="message_project" className="form-control" placeholder="Project Description" value={formState.message_project} onChange={handleChange} disabled={sending}></textarea>
+                        <textarea name="message_project" className="form-control" placeholder="Mensagem" value={formState.message_project} onChange={handleChange} disabled={sending}></textarea>
                       </div>
                     </div>
                     <button type="submit" className="cus-btn-2 w-100" disabled={sending}>
-                      {sending ? 'SENDING...' : 'SEND MESSAGE'} &nbsp;&nbsp;<i className="fal fa-chevron-right"></i>
+                      {sending ? 'A ENVIAR...' : 'ENVIAR MENSAGEM'} &nbsp;&nbsp;<i className="fal fa-chevron-right"></i>
                     </button>
                     <div id="message" className="alert-msg"></div>
                   </form>
                   {/* FAQ Section - styled as cards with icons */}
                   <div className="faq-section mt-48">
-                    <h4 className="h-28 fw-700 dark-black mb-16">FAQ'S</h4>
+                    <h4 className="h-28 fw-700 dark-black mb-16">PERGUNTAS FREQUENTES</h4>
                     {[{
-                      q: 'How do I contact support?',
-                      a: 'You can use the contact form or email us at info@example.com.'
+                      q: 'Como posso contactar o suporte?',
+                      a: 'Pode usar o formulário de contacto ou enviar email para info@example.com.'
                     }, {
-                      q: 'What are your business hours?',
-                      a: 'We are open Monday to Friday, 9AM to 5PM, and weekends 11AM to 6PM.'
+                      q: 'Qual é o vosso horário?',
+                      a: 'Estamos abertos de segunda a sexta, das 09h às 17h, e fins de semana das 11h às 18h.'
                     }, {
-                      q: 'How soon will I get a response?',
-                      a: 'We aim to respond within 24 hours to all enquiries.'
+                      q: 'Quando recebo resposta?',
+                      a: 'Respondemos a todos os pedidos no prazo de 24 horas.'
                     }].map((item, idx) => (
                       <div key={idx} className={`faq-card mb-16${faqOpen===idx ? ' open' : ''}`}>
                         <div style={{flex:'1'}}>

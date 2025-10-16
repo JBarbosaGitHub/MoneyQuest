@@ -21,7 +21,7 @@ export default function Header({ onOpenContact }){
             <span className="line-menu"></span>
             <span className="line-menu half end"></span>
           </button>
-          <button className="cus-btn primary contact-btn" onClick={()=>onOpenContact && onOpenContact()}>CONTACT US</button>
+          <button className="cus-btn primary contact-btn" onClick={()=>onOpenContact && onOpenContact()}>CONTACTE-NOS</button>
         </div>
         <div className={`toggle-menu ${open ? 'show' : ''}`}>
           <div className="site-header__bg" onClick={() => setOpen(false)}></div>
