@@ -63,7 +63,7 @@ export default function FirstMillionSimulator() {
             {periods.map(y => <option key={y} value={y}>{y} anos</option>)}
           </select>
         </div>
-        <button type="submit" className="cus-btn w-100">Calcular</button>
+  <button type="submit" className="cus-btn" style={{width:'220px',maxWidth:'100%',margin:'0 auto',display:'block'}}>Calcular</button>
       </form>
       {results && results.table && (
         <div className="simulator-results" style={{ marginTop: 24 }}>

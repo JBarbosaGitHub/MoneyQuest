@@ -121,7 +121,7 @@ export default function LifeTimeCostSimulator() {
           {errors.dailyHours && <small className="error-text">{errors.dailyHours}</small>}
         </div>
 
-        <button type="submit" className="cus-btn w-100">Calcular</button>
+  <button type="submit" className="cus-btn" style={{width:'220px',maxWidth:'100%',margin:'0 auto',display:'block'}}>Calcular</button>
       </form>
 
       {results && (

@@ -7,6 +7,11 @@ import BondInvestmentSimulator from './simulators/BondInvestmentSimulator'
 import EducationSavingsSimulator from './simulators/EducationSavingsSimulator'
 import FirstMillionSimulator from './simulators/FirstMillionSimulator'
 import LifeTimeCostSimulator from './simulators/LifeTimeCostSimulator'
+import EuriborSimulator from './simulators/EuriborSimulator'
+import HousingLoan from './simulators/HousingLoan'
+import MaxHouseValue from './simulators/MaxHouseValue'
+import FinancialIndependence from './simulators/FinancialIndependence'
+import TimeCostSimulator from './simulators/TimeCostSimulator'
 import SimulatorPopup from './SimulatorPopup'
 
 // Icon map for colorful themed icons per simulator
@@ -19,6 +24,11 @@ const iconMap = {
   education: { emoji: '🎓', bg: '#FECACA', fg: '#7F1D1D' },
   lifetimecost: { emoji: '⏱️', bg: '#DDD6FE', fg: '#4C1D95' },
   firstmillion: { emoji: '🥇', bg: '#FDE68A', fg: '#92400E' },
+  euribor: { emoji: '🏦', bg: '#E0F2FE', fg: '#0C4A6E' },
+  housingloan: { emoji: '🏠', bg: '#FFE4E6', fg: '#9F1239' },
+  maxhouse: { emoji: '📏', bg: '#DCFCE7', fg: '#166534' },
+  finindependence: { emoji: '🗽', bg: '#FFEFD5', fg: '#7C2D12' },
+  timecost: { emoji: '⏳', bg: '#D1FAE5', fg: '#065F46' },
 }
 
 function IconBadge({ id, name }) {
@@ -109,6 +119,46 @@ const simulators = [
     image: '/assets/media/brand-logo/brand-img-7.png',
     component: <FirstMillionSimulator />,
     description: 'Descubra quanto investir por mês para alcançar o primeiro milhão.'
+  },
+  {
+    id: 'euribor',
+    name: 'Simulador Euribor 2025',
+    logo: '/assets/media/brand-logo/brand-logo-9.png',
+    image: '/assets/media/brand-logo/brand-img-9.png',
+    component: <EuriborSimulator />,
+    description: 'Simula o impacto da Taxa Euribor na prestação de crédito habitação.'
+  },
+  {
+    id: 'housingloan',
+    name: 'Crédito à habitação',
+    logo: '/assets/media/brand-logo/brand-logo-10.png',
+    image: '/assets/media/brand-logo/brand-img-10.png',
+    component: <HousingLoan />,
+    description: 'Simula o teu empréstimo para habitação com diferentes tipos de taxa de juro.'
+  },
+  {
+    id: 'maxhouse',
+    name: 'Valor máximo da casa',
+    logo: '/assets/media/brand-logo/brand-logo-11.png',
+    image: '/assets/media/brand-logo/brand-img-11.png',
+    component: <MaxHouseValue />,
+    description: 'Calcula o preço máximo de casa que podes comprar com base na tua situação financeira.'
+  },
+  {
+    id: 'finindependence',
+    name: 'Independência Financeira',
+    logo: '/assets/media/brand-logo/brand-logo-12.png',
+    image: '/assets/media/brand-logo/brand-img-12.png',
+    component: <FinancialIndependence />,
+    description: 'Planeie o seu caminho para a liberdade financeira: acumulação e fase de rendimento.'
+  },
+  {
+    id: 'timecost',
+    name: 'Quanto Tempo de Vida Custa Isso?',
+    logo: '/assets/media/brand-logo/brand-logo-13.png',
+    image: '/assets/media/brand-logo/brand-img-13.png',
+    component: <TimeCostSimulator />,
+    description: 'Veja quantas horas ou dias de trabalho custam os seus desejos e compras.'
   }
 ]
 
