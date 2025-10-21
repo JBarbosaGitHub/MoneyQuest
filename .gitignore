@@ -15,7 +15,6 @@ dist-ssr
 
 # Firebase/Secrets
 .env
-src/firebase/config.js
 
 # Editor directories and files
 .vscode/*
