@@ -1,0 +1,241 @@
+.testimonials {
+    padding: 5vw 0;
+    .heading{
+        @include media-query(992px){
+            padding-top: 48px;
+        }
+        @include media-query(768px){
+            padding-top: 16px;
+        }
+    }
+    .banner-text {
+        position: relative;
+        background: transparent;
+        z-index: 0;
+        font-family: $font-primary;
+        font-size: 4.6875vw;
+        font-weight: 800;
+        font-style: normal;
+        line-height: 125%;
+        @include media-query(430px){
+            font-size: 6.6875vw;
+        }
+
+        &:before {
+            content: attr(title);
+            position: absolute;
+            -webkit-text-stroke: 1px $black;
+            -webkit-text-fill-color: $white;
+            left: 0;
+            top: 20px;
+            z-index: -1;
+            @include media-query(1299px){
+                top: 16px;
+            }
+            @include media-query(820px){
+                top: 11px;
+            }
+            @include media-query(768px){
+                top: 8px;
+            }
+        }
+    }
+    .testimonials-slider{
+        margin: 0 -12px;
+
+        @include media-query(492px){
+            padding: 0 16px;
+        }
+        .slick-prev{
+            font-size: 0;
+            line-height: 0;
+            position: absolute;
+            left: 85.5%;
+            top: -26%;
+            display: block;
+            width: 80px;
+            height: 56px;
+            padding: 0;
+            -webkit-transform: translate(0, -50%);
+            -ms-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+            z-index: 999;
+            cursor: pointer;
+            border: 1px solid $black;
+            outline: none;
+            background: $white;
+            border-radius: 15px;
+            box-shadow: 0px 6px 0px 0px #000;
+
+            @include media-query(1599px){
+                left: 83.5%;
+            }
+            @include media-query(1399px){
+                left: 82%;
+                width: 65px;
+                height: 48px;
+            }
+            @include media-query(1024px){
+                top: -18%;
+                left: 80%;
+            }
+            @include media-query(820px){
+                width: 54px;
+                height: 40px;
+                border-radius: 10px;
+            }
+            @include media-query(768px){
+                left: 78%;
+            }
+            @include media-query(575px){
+                width: 46px;
+                height: 33px;
+                left: 77%;
+            }
+            @include media-query(492px){
+                left: 74%;
+            }
+            @include media-query(430px){
+                left: 69%;
+                top: -22%;
+            }
+            @include media-query(399px){
+                width: 42px;
+                height: 34px;
+            }
+            &::before{
+                color: $black;
+                transition: $transition;
+                font-size: 40px;
+                font-weight: 100;
+                @include media-query(575px){
+                    font-size: 33px;
+                }
+            }
+            &:hover{
+                transition: $transition;
+                background: $accent-1;
+                &::before{
+                   color: $white;
+                }
+            }
+        }
+        .slick-next{
+            font-size: 0;
+            line-height: 0;
+            position: absolute;
+            right: 89px;
+            top: -26%;
+            display: block;
+            width: 80px;
+            height: 56px;
+            padding: 0;
+            -webkit-transform: translate(0, -50%);
+            -ms-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+            z-index: 999;
+            cursor: pointer;
+            border: 1px solid $black;
+            outline: none;
+            background: $white;
+            border-radius: 15px;
+            transition: $transition;
+            box-shadow: 0px 6px 0px 0px #000;
+            @include media-query(1399px){
+                width: 65px;
+                height: 48px;
+                right: 72px;
+            }
+            @include media-query(1024px){
+                right: 58px;
+                top: -18%;
+            }
+            @include media-query(820px){
+                width: 54px;
+                height: 40px;
+                border-radius: 10px;
+            }
+            @include media-query(768px){
+                right: 50px;
+            }
+            @include media-query(575px){
+                width: 46px;
+                height: 33px;
+            }
+            @include media-query(430px){
+                right: 40px;
+                top: -22%;
+            }
+            @include media-query(399px){
+                width: 42px;
+                height: 34px;
+            }
+            &::before{
+                color: $black;
+                transition: $transition;
+                font-size: 40px;
+                font-weight: 100;
+                @include media-query(575px){
+                    font-size: 33px;
+                }
+            }
+            &:hover{
+                transition: $transition;
+                background: $accent-1;
+                &::before{
+                   color: $white;
+                }
+            }
+        }
+    }
+    .testimonials-block{
+        background: $white;
+        border: 2px solid $dark-black;
+        border-radius: 30px;
+        padding: 24px;
+        margin: 0 12px;
+        @include media-query(575px){
+            padding: 12px;
+            border-radius: 20px;
+        }
+        @include media-query(492px){
+            border: 1px solid $dark-black;
+            
+        }
+        .title{
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            @include media-query(575px){
+                gap: 32px;
+            }
+            img{
+                @include media-query(575px){
+                    width: 40px;
+                }
+            }
+            h4{
+                @include media-query(1024px){
+                    font-size: 2.458333vw;
+                }
+                @include media-query(430px){
+                    font-size: 4.2vw;
+                }
+            }
+            h6{
+                @include media-query(1024px){
+                    font-size: 1.75vw;
+                }
+                @include media-query(430px){
+                    font-size: 3vw;
+                }
+            }
+        }
+        .qoutes{
+            text-align: end;
+            @include media-query(575px){
+                width: 40px;
+            }
+        }
+    }
+}

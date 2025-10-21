@@ -1,0 +1,116 @@
+/* Enhanced preloader animation */
+.preloader-animated {
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	background: #fff;
+	z-index: 9999999;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	animation: fadeOutPreloader 0.7s 1.1s forwards;
+}
+.preloader-animated .loader {
+	text-align: center;
+}
+.logo-animated {
+	width: 120px;
+	height: 120px;
+	animation: scaleLogo 1.1s cubic-bezier(0.23, 1, 0.32, 1), spin 1.2s linear infinite;
+}
+@keyframes scaleLogo {
+	0% { transform: scale(0.7); opacity: 0; }
+	60% { transform: scale(1.1); opacity: 1; }
+	100% { transform: scale(1); opacity: 1; }
+}
+@keyframes fadeOutPreloader {
+	to { opacity: 0; visibility: hidden; }
+}
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+/* Animations for entrance and fade-in */
+.fade-in {
+	opacity: 0;
+	transform: translateY(40px);
+	animation: fadeInUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes fadeInUp {
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+/* Testimonials layout fix: add spacing so testimonials are not at the edge */
+.testimonials {
+	padding-left: 32px;
+	padding-right: 32px;
+}
+.testimonials .testimonials-slider {
+	padding-left: 16px;
+	padding-right: 16px;
+}
+
+/* Reveal system (IO-based) */
+.reveal { opacity: 0; transform: translateY(24px); will-change: opacity, transform; }
+.reveal.reveal-in { opacity: 1; transform: none; transition: opacity .6s ease, transform .6s ease; }
+@media (prefers-reduced-motion: reduce) {
+	.reveal, .reveal.reveal-in { opacity: 1; transform: none; transition: none; }
+}
+
+/* Buttons visual system */
+.cus-btn, .cus-btn-2 {
+	border-radius: 12px;
+	padding: 14px 20px;
+	transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease;
+}
+/* Strong offset shadow only for primary CTA variant */
+.cus-btn-2 { box-shadow: 0 6px 0 0 #000; }
+.cus-btn-2:active { transform: translateY(2px); box-shadow: 0 4px 0 0 #000; }
+.cus-btn-2:focus-visible, .cus-btn:focus-visible { outline: 2px solid #15a37a; outline-offset: 2px; }
+/* Header basic button without heavy shadow to avoid strange clipping */
+.header .menu-link .cus-btn { box-shadow: none !important; border: 1px solid #101213; }
+
+/* Footer tweaks */
+footer .footer-box .content-area .bottom-bar .social-icons a { margin-left: 16px; display: inline-flex; align-items:center; }
+footer .footer-box .content-area .company-name { letter-spacing: -2px; }
+/* Footer bottom bar alignment */
+footer .footer-box .content-area .bottom-bar { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+footer .footer-box .content-area .bottom-bar .social-icons { display:flex; gap:12px; }
+footer .footer-box .content-area .bottom-bar .social-icons a { margin-left: 0; width:36px; height:36px; border:1px solid rgba(255,255,255,0.3); border-radius:50%; justify-content:center; }
+footer .footer-box .content-area .bottom-bar .social-icons a i { font-size:16px; line-height:1; }
+
+/* ContactPopup polish */
+.begin-popup .content { background: #FAFDFF; }
+.begin-popup .content .company-contact-detail { background: transparent; }
+.begin-popup .content .company-contact-detail .vert-line { background: #101213; }
+.begin-popup .content form .form-control { background: transparent; border: 1px solid #090909; color: #101213; }
+.begin-popup .content form .form-control:focus { outline: none; box-shadow: 0 0 0 3px rgba(21,163,122,0.35); border-color: #15a37a; }
+.begin-popup .content,
+.begin-popup .content .form-content-wrap,
+.begin-popup .content .contact-form,
+.begin-popup .content .contact-form .row,
+.begin-popup .content .contact-form [class^="col-"],
+.begin-popup .content .contact-form [class*=" col-"] { overflow: visible !important; }
+.begin-popup .faq-section .faq-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); padding:16px 24px; display:flex; align-items:center; justify-content:space-between; }
+.begin-popup .faq-section .faq-card .faq-question { cursor:pointer; }
+.begin-popup .faq-section .faq-card .faq-answer { color:#333; }
+.begin-popup .faq-section .faq-toggle-btn { background:none; border:none; outline:none; cursor:pointer; margin-left:16px; font-size:24px; display:inline-flex; align-items:center; }
+
+/* Swiper enhancements for testimonials */
+.testimonials .swiper { padding-bottom: 32px; }
+.testimonials .swiper-slide { padding: 0 8px; }
+.testimonials .swiper-pagination-bullets .swiper-pagination-bullet { background:#101213; opacity:.3; }
+.testimonials .swiper-pagination-bullet-active { opacity: 1; }
+.testimonials .swiper-button-prev, .testimonials .swiper-button-next { color: #101213; }
+/* Ensure form-control text is always visible */
+.form-control, .form-control::placeholder {
+	color: #222 !important;
+	opacity: 1 !important;
+}
+body.popup-open { overflow: hidden; }
+/* Ensure begin-popup is visible (in case vendor css uses right:-100%) */
+.begin-popup { right: 0 !important; }
+.begin-popup .overlay { transform: scale(1) !important; opacity: 0.5 !important; }

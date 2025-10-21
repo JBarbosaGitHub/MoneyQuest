@@ -1,0 +1,120 @@
+.cus-btn {
+  font-family: $font-sec;
+  padding: 0.8333333333333334vw 1.6666666666666667vw;
+  font-size: 1.09375vw;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 31.5px */
+  letter-spacing: 0.021875vw;
+  color: $white;
+  border-radius: 15px;
+  border: 0;
+  background: $accent-1;
+  box-shadow: none;
+  transition: $transition;
+  @media (max-width: 1399px) {
+    border-radius: 10px;
+    padding: 1.09vw 1vw;
+    font-size: 1vw;
+  }
+  @media (max-width: 1024px) {
+    font-size: 1.3vw;
+  }
+  @media (max-width: 992px) {
+    padding: 1.55vw 1.503vw;
+    font-size: 2vw;
+  }
+  @media (max-width: 430px) {
+    padding: 2.7vw 4vw;
+    font-size: 3vw;
+  }
+  &:hover {
+    background: $black;
+    color: $white;
+  }
+}
+
+// .cus-btn-2 {
+//   font-family: $font-sec;
+//   padding: 0.8333333333333334vw 1.6666666666666667vw;
+//   font-size: 1.09375vw;
+//   font-style: normal;
+//   font-weight: 700;
+//   line-height: 150%; /* 31.5px */
+//   letter-spacing: 0.021875vw;
+//   color: $white;
+//   border-radius: 15px;
+//   border: 0;
+//   background: $accent-1;
+//   box-shadow: 0px 6px 0px 0px #000;
+//   transition: $transition;
+//   @media (max-width: 1399px) {
+//     border-radius: 10px;
+//     padding: 1.09vw 1vw;
+//     font-size: 1vw;
+//   }
+//   @media (max-width: 1024px) {
+//     font-size: 1.5vw;
+//   }
+//   @media (max-width: 992px) {
+//     padding: 1.55vw 1.903vw;
+//     font-size: 1.8vw;
+//   }
+//   @media (max-width: 430px) {
+//     padding: 2.7vw 4vw;
+//     font-size: 2.5vw;
+//     letter-spacing: 0.21875vw;
+//   }
+//   &:hover {
+//     color: $white;
+//     box-shadow: 7px 7px 0px 2px #000;
+//   }
+// }
+.cus-btn-2 {
+  font-family: $font-sec;
+  padding: clamp(12px, 0.833vw, 24px) clamp(24px, 1.667vw, 48px);
+  letter-spacing: 0.021875vw;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  font-size: clamp(14px, 0.83vw, 30px);
+  // border: 3px solid #ff0072;
+  border-radius: 15px;
+  position: relative;
+  border: 0;
+  box-shadow: 0px 6px 0px 0px #000;
+  background-color: $accent-1;
+  color: $white;
+  text-decoration: none;
+  transition: 0.3s ease all;
+  z-index: 1;
+
+  &::before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    border-radius: 15px;
+    opacity: 0;
+    content: "";
+    background-color: $dark-gray;
+    z-index: -1;
+  }
+
+  &:hover,
+  &:focus {
+    color: white;
+
+    &::before {
+      left: 0;
+      right: 0;
+      opacity: 1;
+    }
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+}

@@ -1,0 +1,115 @@
+/*---------------------------------------------"
+// Template Name: FinPro
+// Description: FinPro HTML5 Template
+// Author: Uiparadox
+// Version: 1.0.0
+
+===============================================   
+STYLE SHEET INDEXING
+|
+|___ Fonts
+|___ Variables
+|___ Responsive
+|___ Reset Styles
+|___ Spacing
+|___ Helper Classes
+|___ Buttons
+|___ Headings
+|___ Layout Styles
+|___ END STYLE SHEET INDEXING
+
+--------------------------------------------*/
+
+/*-------------------------
+    Fonts
+-------------------------*/
+// Saira Font
+@import url('https://fonts.googleapis.com/css2?family=Saira:wght@100;200;300;400;500;600;700;800;900&display=swap');
+// Saira Condensed Font
+@import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap');
+// Inter Font
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap');
+
+
+/*-------------------------
+    Variables
+-------------------------*/
+
+
+/* Fonts */
+$font-primary: 'Saira', sans-serif;
+$font-sec: 'Saira Condensed', sans-serif;
+$body-text: 'Inter', sans-serif;;
+$font-awesome: "Font Awesome 5 Pro";
+
+/* Colors */
+
+$accent-1: #5DAD9E;
+$black: #101213;
+$dark-black: #090909;
+$white: #FAFDFF;
+$dark-gray: #7E8081;
+$light-gray: #CBCCCD;
+$medium-gray: #A2A3A4;
+
+
+
+/* Transitions */
+$transition: all .5s ease-in-out;
+
+/* Shadows */
+
+
+/*-------------------------
+    Responcive Styles
+-------------------------*/
+@import "helpers/mixin";
+
+/*-------------------------
+    Reset Styles
+-------------------------*/
+@import "basic/basic";
+
+/*-------------------------
+Helpers
+-------------------------*/
+@import "helpers/classes";
+
+@import "helpers/spacing";
+
+/*-------------------------
+Elements
+-------------------------*/
+
+@import "elements/buttons";
+
+@import "elements/form";
+
+@import "elements/heading";
+
+@import "elements/preloader";
+
+@import "elements/dropdown";
+
+
+/*-------------------------
+  layouts
+-------------------------*/
+
+@import "layout/header";
+
+@import "layout/footer";
+
+@import "layout/banner";
+
+@import "layout/about";
+
+@import "layout/services";
+
+@import "layout/case-studies";
+
+@import "layout/testimonials";
+
+@import "layout/team";
+
+@import "layout/popup";
