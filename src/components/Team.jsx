@@ -24,12 +24,13 @@ export default function Team(){
             <div className="team-block">
               <img src="/assets/media/vectors/shape-3.png" className="team-shape" alt="" loading="lazy" decoding="async" />
               <div className="member-detail">
-                <img src="/assets/media/users/user-1.png" alt="" className="mb-32" loading="lazy" decoding="async" />
+                <img src="/src/assets/Sonia.png" alt="" className="mb-32" loading="lazy" decoding="async" />
                 <div className="title">
-                  <h4 className="h-38 fw-700 black">JACOB ANDREW</h4>
-                  <h5 className="h-21 fw-700 font-sec black">Founder & Accountant</h5>
+                  <h4 className="h-38 fw-700 black">SÓNIA SANCHES</h4>
+                  <h5 className="h-21 fw-700 font-sec black">Fundadora & Educadora Financeira</h5>
                 </div>
-                <p className="h-16 fw-400 body-text black">Josh will handle your BAS, Individual & Company Tax Returns.</p>
+                <p className="h-16 fw-400 body-text black">Especialista em educação financeira e pedagogia ativa. Formada em psicologia e educação, com experiência na banca e em formação de adultos e desenvolvimento de programas de literacia económica. Criativa, prática e focada em resultados reais.
+</p>
               </div>
             </div>
           </SwiperSlide>
@@ -37,25 +38,12 @@ export default function Team(){
             <div className="team-block">
               <img src="/assets/media/vectors/shape-3.png" className="team-shape" alt="" />
               <div className="member-detail">
-                <img src="/assets/media/users/user-1.png" alt="" className="mb-32" />
+                <img src="/src/assets/Miguel.png" alt="" className="mb-32" />
                 <div className="title">
-                  <h4 className="h-38 fw-700 black">JACOB ANDREW</h4>
-                  <h5 className="h-21 fw-700 font-sec black">Founder & Accountant</h5>
+                  <h4 className="h-38 fw-700 black">MIGUEL DIAS</h4>
+                  <h5 className="h-21 fw-700 font-sec black">Fundador & Contabilista</h5>
                 </div>
-                <p className="h-16 fw-400 body-text black">Josh will handle your BAS, Individual & Company Tax Returns.</p>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="team-block">
-              <img src="/assets/media/vectors/shape-3.png" className="team-shape" alt="" />
-              <div className="member-detail">
-                <img src="/assets/media/users/user-1.png" alt="" className="mb-32" />
-                <div className="title">
-                  <h4 className="h-38 fw-700 black">JACOB ANDREW</h4>
-                  <h5 className="h-21 fw-700 font-sec black">Founder & Accountant</h5>
-                </div>
-                <p className="h-16 fw-400 body-text black">Josh will handle your BAS, Individual & Company Tax Returns.</p>
+                <p className="h-16 fw-400 body-text black">Especialista financeiro e empreendedor. Apaixonado por matemática aplicada e tecnologia educativa. Formado em gestão, economia e matemática aplicada, lidera workshops de planeamento financeiro e investimento para adultos. Direto, motivador e comprometido com a autonomia.</p>
               </div>
             </div>
           </SwiperSlide>

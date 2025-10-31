@@ -5,20 +5,24 @@ import Header from './components/Header'
 import Banner from './components/Banner'
 import Services from './components/Services'
 import CaseStudies from './components/CaseStudies'
+import ConsultasFinanceiras from './components/ConsultasFinanceiras'
 import Testimonials from './components/Testimonials'
 import Team from './components/Team'
 import Footer from './components/Footer'
 import ContactPopup from './components/ContactPopup'
 import Login from './components/Login'
+import ConsultasAdminModal from './components/ConsultasAdminModal'
 import useReveal from './hooks/useReveal'
 
 export default function App(){
   const [openPopup, setOpenPopup] = useState(false)
   const [openLogin, setOpenLogin] = useState(false)
+  const [openAdmin, setOpenAdmin] = useState(false)
 
   const [loading, setLoading] = useState(true)
   const openContactPopup = () => setOpenPopup(true)
   const openLoginPopup = () => setOpenLogin(true)
+  const openAdminPanel = () => setOpenAdmin(true)
   const [lottieData, setLottieData] = useState(null)
 
   // Initialize scroll reveal once
@@ -64,16 +68,19 @@ export default function App(){
           </div>
         </div>
       )}
-      <Header onOpenContact={openContactPopup} onOpenLogin={openLoginPopup} />
+      <Header onOpenContact={openContactPopup} onOpenLogin={openLoginPopup} onOpenAdmin={openAdminPanel} />
       <main id="main-wrapper" className="main-wrapper overflow-hidden">
         <Banner onOpenContact={openContactPopup} />
         <Services onOpenContact={openContactPopup} />
+        {/* Consultas before Simuladores */}
+        <ConsultasFinanceiras onOpenLogin={openLoginPopup} />
         <CaseStudies onOpenLogin={openLoginPopup} />
         <Testimonials />
         <Team />
       </main>
       <ContactPopup open={openPopup} onClose={() => setOpenPopup(false)} />
       {openLogin && <Login onClose={() => setOpenLogin(false)} />}
+      <ConsultasAdminModal open={openAdmin} onClose={() => setOpenAdmin(false)} />
       <Footer onOpenContact={openContactPopup} />
     </div>
   )

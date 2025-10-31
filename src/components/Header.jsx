@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 
-export default function Header({ onOpenContact, onOpenLogin }){
+export default function Header({ onOpenContact, onOpenLogin, onOpenAdmin }){
   const [open, setOpen] = useState(false)
-  const { currentUser } = useAuth()
+  const { currentUser, userProfile } = useAuth()
 
   return (
     <header className={`header ${open ? 'menu-active' : ''}`}>
@@ -31,6 +31,8 @@ export default function Header({ onOpenContact, onOpenLogin }){
             <ul className="links list-unstyled">
               <li><a href="#about" onClick={() => setOpen(false)}>About</a></li>
               <li><a href="#service" onClick={() => setOpen(false)}>Services</a></li>
+              {/* Consultas link before Simuladores */}
+              <li><a href="#consultas" onClick={() => setOpen(false)}>Consultas</a></li>
               <li><a href="#simulators" onClick={() => setOpen(false)}>Simuladores</a></li>
               <li><a href="#testimonials" onClick={() => setOpen(false)}>Testimonials</a></li>
               <li><a href="#team" onClick={() => setOpen(false)}>Team</a></li>
@@ -42,23 +44,24 @@ export default function Header({ onOpenContact, onOpenLogin }){
                     setOpen(false)
                     onOpenLogin && onOpenLogin()
                   }}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px'
-                  }}
                 >
-                  {currentUser ? (
-                    <>
-                      <span>Perfil</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>Login</span>
-                    </>
-                  )}
+                  {currentUser ? 'Perfil' : 'Login'}
                 </a>
               </li>
+              {currentUser && userProfile?.isAdmin && (
+                <li>
+                  <a 
+                    href="#" 
+                    onClick={(e) => {
+                      e.preventDefault()
+                      setOpen(false)
+                      onOpenAdmin && onOpenAdmin()
+                    }}
+                  >
+                    Admin
+                  </a>
+                </li>
+              )}
             </ul>
             <ul className="social-link list-unstyled">
               <li><a href="#">Instagram</a></li>

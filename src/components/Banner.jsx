@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
-function AccordionItem({title, children, isOpen, onToggle}){
+function AccordionItem({ title, children, isOpen, onToggle }) {
   return (
     <div className={`accordion ${isOpen ? 'accordion_active' : ''}`}>
       <div className="accordion_intro" onClick={onToggle} role="button" tabIndex={0}>
@@ -14,7 +14,7 @@ function AccordionItem({title, children, isOpen, onToggle}){
 }
 
 
-export default function Banner({ onOpenContact }){
+export default function Banner({ onOpenContact }) {
   const [openIndex, setOpenIndex] = useState(0)
 
   const toggle = (i) => setOpenIndex(prev => prev === i ? -1 : i)
@@ -25,10 +25,9 @@ export default function Banner({ onOpenContact }){
         <div className="row">
           <div className="col-xl-7 col-lg-7 col-md-7 col-sm-7 order-sm-1 order-2 reveal">
             <div className="text-block">
-              <h1 className="black mb-32"><span className="banner-text" title="MASTERING">MASTERING</span><br/> <span className="rotate-text">YOUR</span> <span className="banner-text color-primary" title="FINANCE">FINANCE</span></h1>
-              <p className="dark-black h-16 body-text mb-32">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero accusamus incidunt, animi commodi nemo maiores nihil eius nulla, reprehenderit dolor tempore.</p>
+              <h1 className="black mb-32"><span className="banner-text" title="MASTERING">MASTERING</span><br /> <span className="rotate-text">YOUR</span> <span className="banner-text color-primary" title="FINANCE">FINANCE</span></h1>
               <div className="btn-block">
-                <button type="button" className="cus-btn-2 contact-btn" onClick={()=>onOpenContact && onOpenContact()}>SCHEDULE A MEETING &nbsp;&nbsp;<i className="fal fa-chevron-right"></i></button>
+                <button type="button" className="cus-btn-2 contact-btn" onClick={() => onOpenContact && onOpenContact()}>SCHEDULE A MEETING &nbsp;&nbsp;<i className="fal fa-chevron-right"></i></button>
               </div>
             </div>
           </div>
@@ -46,14 +45,22 @@ export default function Banner({ onOpenContact }){
           <div className="row">
             <div className="col-xl-7 col-lg-7 col-md-7 col-sm-7 reveal">
               <div className="accordion_block">
-                <AccordionItem title="OUR STORY" isOpen={openIndex===0} onToggle={() => toggle(0)}>
-                  <p className="h-16 body-text dark-gray fw-400 mb-16 mt-24">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi quidem quaerat expedita aspernatur natus ipsam impedit nobis delectus eligendi ea tenetur...</p>
+                <AccordionItem title="QUEM SOMOS" isOpen={openIndex === 0} onToggle={() => toggle(0)}>
+                  <p className="h-16 body-text dark-gray fw-400 mb-16 mt-24">A MoneyQuest é uma academia de literacia financeira para adultos. Criada em Ferreira do Zêzere, simulações reais, desafios digitais e mentoria personalizada para transformar a forma como  entende e controla o seu dinheiro.</p>
                 </AccordionItem>
-                <AccordionItem title="OUR VISION" isOpen={openIndex===1} onToggle={() => toggle(1)}>
-                  <p className="h-16 body-text dark-gray fw-400 mb-16 mt-24">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi quidem quaerat expedita aspernatur natus ipsam impedit nobis delectus eligendi ea tenetur...</p>
+                <AccordionItem title="OBJETIVOS GERAIS" isOpen={openIndex === 1} onToggle={() => toggle(1)}>
+                  <p className="h-16 body-text dark-gray fw-400 mb-16 mt-24">A MoneyQuest foi desenhada para adultos que querem tomar o controlo das suas finanças.
+                    O programa baseia-se em três pilares fundamentais:
+                    <br />•  Seminários de decisão financeira: Aprenda a avaliar riscos, comparar investimentos e planear o futuro com dados reais.
+                    <br />•  Workshops de consumo consciente: Identifique armadilhas financeiras, reduza despesas desnecessárias e crie margem para investir.
+                    <br />•  Sessões plenárias de escolhas responsáveis: Discuta cenários reais (crédito, poupança, reforma, empreendedorismo) com especialistas e pares.
+
+                    “O objetivo não é ensinar teoria. É treinar você para vencer na prática.”</p>
                 </AccordionItem>
-                <AccordionItem title="WHY YOU CHOOSE US?" isOpen={openIndex===2} onToggle={() => toggle(2)}>
-                  <p className="h-16 body-text dark-gray fw-400 mb-16 mt-24">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi quidem quaerat expedita aspernatur natus ipsam impedit nobis delectus eligendi ea tenetur...</p>
+                <AccordionItem title="POR QUE ESCOLHER-NOS?" isOpen={openIndex === 2} onToggle={() => toggle(2)}>
+                  <p className="h-16 body-text dark-gray fw-400 mb-16 mt-24">Somos a Sónia Sanches e o Miguel Dias — e acreditamos que qualquer adulto pode dominar as finanças.
+                    Junte-se à MoneyQuest. Comece a aprender. Comece a ganhar.
+                  </p>
                 </AccordionItem>
               </div>
             </div>
