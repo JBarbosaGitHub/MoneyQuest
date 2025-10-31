@@ -1,6 +1,8 @@
 import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
+import SoniaImg from '../assets/Sonia.png'
+import MiguelImg from '../assets/Miguel.png'
 
 export default function Team(){
   return (
@@ -24,7 +26,7 @@ export default function Team(){
             <div className="team-block">
               <img src="/assets/media/vectors/shape-3.png" className="team-shape" alt="" loading="lazy" decoding="async" />
               <div className="member-detail">
-                <img src="/src/assets/Sonia.png" alt="" className="mb-32" loading="lazy" decoding="async" />
+                <img src={SoniaImg} alt="Sónia Sanches" className="mb-32" loading="lazy" decoding="async" />
                 <div className="title">
                   <h4 className="h-38 fw-700 black">SÓNIA SANCHES</h4>
                   <h5 className="h-21 fw-700 font-sec black">Fundadora & Educadora Financeira</h5>
@@ -36,9 +38,9 @@ export default function Team(){
           </SwiperSlide>
           <SwiperSlide>
             <div className="team-block">
-              <img src="/assets/media/vectors/shape-3.png" className="team-shape" alt="" />
+              <img src="/assets/media/vectors/shape-3.png" className="team-shape" alt="" loading="lazy" decoding="async" />
               <div className="member-detail">
-                <img src="/src/assets/Miguel.png" alt="" className="mb-32" />
+                <img src={MiguelImg} alt="Miguel Dias" className="mb-32" loading="lazy" decoding="async" />
                 <div className="title">
                   <h4 className="h-38 fw-700 black">MIGUEL DIAS</h4>
                   <h5 className="h-21 fw-700 font-sec black">Fundador & Contabilista</h5>
