@@ -8,8 +8,8 @@ export default function Header({ onOpenContact, onOpenLogin, onOpenAdmin }){
   return (
     <header className={`header ${open ? 'menu-active' : ''}`}>
       <div className="logo">
-        <a href="#">
-          <img src="/assets/media/logo.png" className="brand-logo" alt="" />
+        <a href="#" aria-label="MoneyQuest - Página Inicial">
+          <img src="/assets/media/logo.png" className="brand-logo" alt="MoneyQuest Logo" />
         </a>
       </div>
       <div className="menu-detail">
@@ -64,9 +64,9 @@ export default function Header({ onOpenContact, onOpenLogin, onOpenAdmin }){
               )}
             </ul>
             <ul className="social-link list-unstyled">
-              <li><a href="#">Instagram</a></li>
-              <li><a href="#">Linkedin</a></li>
-              <li><a href="#">Indeed</a></li>
+              <li><a href="#" aria-label="Instagram MoneyQuest">Instagram</a></li>
+              <li><a href="#" aria-label="LinkedIn MoneyQuest">Linkedin</a></li>
+              <li><a href="#" aria-label="Indeed MoneyQuest">Indeed</a></li>
             </ul>
           </div>
         </div>

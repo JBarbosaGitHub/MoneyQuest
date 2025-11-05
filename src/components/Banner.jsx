@@ -34,7 +34,7 @@ export default function Banner({ onOpenContact }) {
           <div className="col-xl-5 col-lg-5 col-md-5 col-sm-5 order-sm-2 order-1 reveal">
             <div className="image-block">
               <div className="banner-image">
-                <img src="/assets/media/images/hero-banner.png" alt="" className="first" fetchpriority="high" decoding="async" />
+                <img src="/assets/media/images/hero-banner.png" alt="Ilustração representando gestão financeira e educação" className="first" fetchpriority="high" decoding="async" />
               </div>
             </div>
           </div>
@@ -65,7 +65,7 @@ export default function Banner({ onOpenContact }) {
               </div>
             </div>
             <div className="col-xl-5 col-lg-5 col-md-5 reveal">
-              <img src="/assets/media/about/image-1.png" alt="" className="about-main-image" loading="lazy" decoding="async" />
+              <img src="/assets/media/about/image-1.png" alt="Equipa MoneyQuest trabalhando em consultoria financeira" className="about-main-image" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>

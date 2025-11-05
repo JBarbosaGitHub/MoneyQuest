@@ -32,7 +32,7 @@ export default function Testimonials(){
         <SwiperSlide>
           <div className="testimonials-block reveal">
             <div className="title mb-32 reveal">
-              <img src="/assets/media/icons/testimonial-1.png" alt="" />
+              <img src="/assets/media/icons/testimonial-1.png" alt="Foto de perfil do testemunho" />
               <div>
                 <h4 className="h-28 fw-700 black mb-8">NAME OF PERSON</h4>
                 <h6 className="h-21 font-sec fw-700 black">Position</h6>
@@ -44,7 +44,7 @@ export default function Testimonials(){
         <SwiperSlide>
           <div className="testimonials-block reveal">
             <div className="title mb-32 reveal">
-              <img src="/assets/media/icons/testimonial-1.png" alt="" />
+              <img src="/assets/media/icons/testimonial-1.png" alt="Foto de perfil do testemunho" />
               <div>
                 <h4 className="h-28 fw-700 black mb-8">NAME OF PERSON</h4>
                 <h6 className="h-21 font-sec fw-700 black">Position</h6>
@@ -56,7 +56,7 @@ export default function Testimonials(){
         <SwiperSlide>
           <div className="testimonials-block reveal">
             <div className="title mb-32 reveal">
-              <img src="/assets/media/icons/testimonial-1.png" alt="" />
+              <img src="/assets/media/icons/testimonial-1.png" alt="Foto de perfil do testemunho" />
               <div>
                 <h4 className="h-28 fw-700 black mb-8">NAME OF PERSON</h4>
                 <h6 className="h-21 font-sec fw-700 black">Position</h6>

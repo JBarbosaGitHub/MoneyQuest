@@ -114,31 +114,3 @@ body.popup-open { overflow: hidden; }
 /* Ensure begin-popup is visible (in case vendor css uses right:-100%) */
 .begin-popup { right: 0 !important; }
 .begin-popup .overlay { transform: scale(1) !important; opacity: 0.5 !important; }
-
-/* --------------------------------------------
-	 Mobile-first adjustments (<= 768px)
-	 - Buttons: ensure comfortable touch targets
-	 - Quest cards: improve inner spacing
-	 - Base font size: better readability
---------------------------------------------- */
-@media (max-width: 768px) {
-	/* 1) Buttons full-width with min 48px height */
-	.btn,
-	.cta-button {
-		width: 100% !important;
-		min-height: 48px !important;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	/* 2) Quest card padding */
-	.quest-card {
-		padding: 15px !important;
-	}
-
-	/* 3) Base font size for readability */
-	body {
-		font-size: 18px;
-	}
-}

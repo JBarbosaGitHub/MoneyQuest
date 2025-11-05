@@ -6,7 +6,7 @@ export default function Footer({ onOpenContact }) {
     <footer>
       <div className="container-fluid">
         <div className="footer-box">
-          <img src="/assets/media/vectors/footer-shape.png" alt="" />
+          <img src="/assets/media/vectors/footer-shape.png" alt="Forma decorativa do rodapé" />
           <div className="content-area">
             <div className="menu-detail">
               <h2 className="h-120 fw-900 white">
@@ -41,14 +41,6 @@ export default function Footer({ onOpenContact }) {
               </ul>
             </div>
             <h2 className="company-name"><a href="#">FINPRO</a> ADVISORS</h2>
-            {/* Tree-Nation tree counter widget (inline block) */}
-            <div
-              data-widget-type="tree-counter"
-              data-tree-nation-code="45e26ec4b5cc1b79"
-              data-lang="pt"
-              data-theme="dark"
-              style={{ margin: '24px 0' }}
-            />
             <div className="bottom-bar">
               <h5 className="h-21 white fw-600">©2024 All Rights Reserved</h5>
               <div className="social-icons">
@@ -57,13 +49,6 @@ export default function Footer({ onOpenContact }) {
                 <a href="#" aria-label="Indeed"><i className="fab fa-indeed"></i></a>
               </div>
             </div>
-            {/* Tree-Nation offset website widget (floating badge) */}
-            <div
-              data-widget-type="offset-website"
-              data-tree-nation-code="75fb49ca459b79fe"
-              data-lang="pt"
-              data-theme="dark"
-            />
           </div>
         </div>
       </div>
